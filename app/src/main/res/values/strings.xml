@@ -23,4 +23,20 @@
         <item>@drawable/img_arsenal</item>
     </array>
 
+    <string-array name="club_detail">
+        <item>Futbol Club Barcelona, known simply as Barcelona and colloquially as Barça, is a professional football club based in Barcelona, Catalonia, Spain.</item>
+        <item>Real Madrid Club de Fútbol, commonly known as Real Madrid, is a professional football club based in Madrid, Spain. Founded on 6 March 1902 as the Madrid Football Club, the club has traditionally worn a white home kit since inception.</item>
+        <item>Fußball-Club Bayern München e.V., commonly known as FC Bayern München, FCB, Bayern Munich, or FC Bayern, is a German sports club based in Munich, Bavaria.</item>
+        <item>Manchester City Football Club, commonly known as City, is a football club in Manchester, England. Founded in 1880 as St. Mark's, it became Ardwick Association Football Club in 1887 and Manchester City in 1894.</item>
+        <item>Manchester United Football Club, commonly known as Man. United or simply United, is a professional football club based in Old Trafford, Greater Manchester, England, that competes in the Premier League, the top flight of English football.</item>
+        <item>Chelsea Football Club is a professional football club in London, England, that competes in the Premier League. Founded in 1905, the club's home ground since then has been Stamford Bridge. Chelsea won the First Division title in 1955, followed by various cup competitions between 1965 and 1971.</item>
+        <item>Associazione Calcio Milan, often referred to as A.C. Milan or just Milan, is an Italian football club based in Milan, Lombardy, which plays in Serie A. They play in red-and-black stripes and white pants, so they are nicknamed the rossoneri.</item>
+        <item>Arsenal Football Club is a professional football club based in Islington, London, England, that plays in the Premier League, the top flight of English football.</item>
+    </string-array>
+
+    <item type="id" name="club_image" />
+    <item type="id" name="club_name" />
+    <item type="id" name="club_details" />
+
+
 </resources>
