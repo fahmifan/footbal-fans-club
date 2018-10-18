@@ -1,4 +1,4 @@
-package io.github.miun173.footballfans.activity
+package io.github.miun173.footballfans
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.view.View
 import io.github.miun173.footballfans.R
 import org.jetbrains.anko.*
 
-class ClubDetail : AppCompatActivity() {
+class ClubDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_club_detail)

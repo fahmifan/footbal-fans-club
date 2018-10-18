@@ -1,17 +1,18 @@
-package io.github.miun173.footballfans.activity
+package io.github.miun173.footballfans.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.widget.Toast
+import io.github.miun173.footballfans.ClubDetailActivity
 import io.github.miun173.footballfans.Item
 import io.github.miun173.footballfans.R
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.extensions.CacheImplementation
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
+import kotlinx.android.extensions.ContainerOptions
 
+@ContainerOptions(cache = CacheImplementation.SPARSE_ARRAY)
 class MainActivity : AppCompatActivity() {
 
     private var items: MutableList<Item> = mutableListOf()
@@ -24,16 +25,10 @@ class MainActivity : AppCompatActivity() {
             rvClub.layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
-
         initData()
 
-//        club_list.layoutManager = LinearLayoutManager(this)
-//        club_list.adapter = RecyclerViewAdapter(this, items) {
-//            Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT).show()
-//        }
-
         ui.rvClub.adapter = RecyclerViewAdapter(items) {
-            startActivity(intentFor<ClubDetail>(
+            startActivity(intentFor<ClubDetailActivity>(
                     "image" to it.image,
                     "name" to it.name,
                     "detail" to it.details)

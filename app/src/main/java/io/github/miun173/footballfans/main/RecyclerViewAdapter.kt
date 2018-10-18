@@ -1,9 +1,6 @@
-package io.github.miun173.footballfans.activity
+package io.github.miun173.footballfans.main
 
-import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,7 +9,6 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import io.github.miun173.footballfans.Item
 import io.github.miun173.footballfans.R
-//import kotlinx.android.synthetic.main.
 import org.jetbrains.anko.*
 
 class RecyclerViewAdapter(private val items: List<Item>,
