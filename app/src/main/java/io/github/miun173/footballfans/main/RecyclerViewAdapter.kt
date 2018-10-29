@@ -11,27 +11,25 @@ import io.github.miun173.footballfans.Item
 import io.github.miun173.footballfans.R
 import org.jetbrains.anko.*
 
-class RecyclerViewAdapter(private val items: List<Item>,
-                          private val listener: (Item) -> Unit)
+class RecyclerViewAdapter(private val items: List<Item>, private val listener: (Item) -> Unit)
     : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            ViewHolder(ClubDetailUI().createView(AnkoContext.Companion.create(parent.context, parent)))
+            ViewHolder(ClubDetailUI().createView(AnkoContext.create(parent.context, parent)))
 
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(items[position], listener)
+        holder.bind(items[position], listener)
     }
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val tvClubName: TextView = view.find(R.id.club_name)
         private val imvClubImage: ImageView = view.find(R.id.club_image)
 
-        fun bindItem(items: Item, listener: (Item) -> Unit) {
+        fun bind(items: Item, listener: (Item) -> Unit) {
                 tvClubName.text = items.name
-                items.image?.let { Picasso.get().load(it).into(imvClubImage) }
-
+                Picasso.get().load(items.image).into(imvClubImage)
 
             itemView.setOnClickListener {
                 listener(items)
