@@ -12,6 +12,7 @@ interface MainContract {
     }
 
     interface Presenter {
-        fun getEvents(id: String?)
+        fun getNext15Events(id: String?)
+        fun getLast15Events(id: String?)
     }
 }

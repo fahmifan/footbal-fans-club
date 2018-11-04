@@ -1,55 +1,45 @@
 package io.github.miun173.footballfans.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import com.google.gson.Gson
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
 import io.github.miun173.footballfans.R
-import io.github.miun173.footballfans.detail.DetailActivity
-import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.model.Team
-import io.github.miun173.footballfans.repository.FetchImpl
 import kotlinx.android.synthetic.main.activity_main.*
 
-//@ContainerOptions(cache = CacheImplementation.SPARSE_ARRAY)
-class MainActivity : AppCompatActivity(), MainContract.View {
-    lateinit var rvAdapter: RecyclerViewAdapter
-    lateinit var rv: RecyclerView
-    lateinit var rvManager: RecyclerView.LayoutManager
-
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        pager_main.adapter = MainPagerAdapter(supportFragmentManager)
 
-        val presenter = MainPresenter(this, FetchImpl(), Gson())
-        presenter.getEvents("4328")
+        // Set view pager to use Tab
+        tabs_main.setupWithViewPager(pager_main)
     }
 
-    override fun showEvents(events: List<Event>) {
-        rvManager = LinearLayoutManager(this)
-        rvAdapter = RecyclerViewAdapter(events) {
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("event", it)
-
-            startActivity(intent)
+    private inner class MainPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
+        override fun getItem(pos: Int): Fragment {
+            return when (pos) {
+                0 -> {
+                    val main = MainFragment()
+                    main.isNext = false
+                    main
+                }
+                else -> {
+                    val main = MainFragment()
+                    main.isNext = true
+                    main
+                }
+            }
         }
-
-        rv = events_list.apply {
-            setHasFixedSize(true)
-            layoutManager = rvManager
-            adapter = rvAdapter
+        override fun getCount(): Int = 2
+        override fun getPageTitle(position: Int): CharSequence? {
+            return when(position) {
+                0 -> "Prev Match"
+                1 -> "Next Match"
+                else -> "No Match"
+            }
         }
-    }
-
-    override fun showLoading() {
-    }
-
-    override fun hideLoading() {
-    }
-
-    override fun showTeamList(teams: List<Team>?) {
-        println(teams.toString())
     }
 }

@@ -9,8 +9,8 @@ import io.github.miun173.footballfans.model.Event
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.event_list.*
 
-class RecyclerViewAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
-    : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class MainRecyclerViewAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
+    : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(LayoutInflater
@@ -28,7 +28,15 @@ class RecyclerViewAdapter(private val teams: List<Event>, private val listener: 
         fun bind(event: Event, listener: (Event) -> Unit) {
             tv_team_home.text = event.strHomeTeam
             tv_team_away.text = event.strAwayTeam
-            tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
+            val homeScore = event.intHomeScore
+            val awayScore = event.intAwayScore
+
+            if(homeScore != null && awayScore != null) {
+                tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
+            } else {
+                tv_score.text = "vs"
+            }
+
             tv_date.text = event.dateEvent
 
             containerView.setOnClickListener {

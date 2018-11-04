@@ -12,36 +12,15 @@ object TheSportDbRoute {
 
     val BASE_ROUTE_2 = BuildConfig.BASE_URL + "api/v1/json/" + BuildConfig.TSDB_API_KEY
 
-    fun getTeams(league: String?): String {
-        val base =  BASE_ROUTE
-        val url = base
-                .appendPath("search_all_teams.php")
-                .appendQueryParameter("l", league)
-                .build()
-                .toString()
-
-        println("url >>> $url")
-        return url
-    }
-
     fun getTeam(name: String?): String {
-        val url = BASE_ROUTE_2 + "/searchteams.php?t=" + Uri.parse(name).toString()
-        println("getTeam() url >>> $url")
-        return url
+        return BASE_ROUTE_2 + "/searchteams.php?t=" + Uri.parse(name).toString()
     }
 
     fun getLast15Events(id: String?): String {
-//        val base = BASE_ROUTE
-//        val url = base
-//                .appendPath("eventspastleague.php")
-//                .appendQueryParameter("id", id)
-//                .build()
-//                .toString()
+        return BASE_ROUTE_2 + "/eventspastleague.php?id=" + Uri.parse(id).toString()
+    }
 
-        val url = BASE_ROUTE_2 + "/eventspastleague.php?id=" + Uri.parse(id).toString()
-
-        println("url >>> $url")
-
-        return url
+    fun getNext15Events(id: String?): String {
+        return BASE_ROUTE_2 + "/eventsnextleague.php?id=" + Uri.parse(id).toString()
     }
 }
