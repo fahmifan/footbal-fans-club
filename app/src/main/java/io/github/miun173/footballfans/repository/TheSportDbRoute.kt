@@ -4,23 +4,25 @@ import android.net.Uri
 import io.github.miun173.footballfans.BuildConfig
 
 object TheSportDbRoute {
-    val BASE_ROUTE = Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath("api")
-            .appendPath("v1")
-            .appendPath("json")
-            .appendPath(BuildConfig.TSDB_API_KEY)
-
-    val BASE_ROUTE_2 = BuildConfig.BASE_URL + "api/v1/json/" + BuildConfig.TSDB_API_KEY
+    val BASE_ROUTE = BuildConfig.BASE_URL + "api/v1/json/" + BuildConfig.TSDB_API_KEY
 
     fun getTeam(name: String?): String {
-        return BASE_ROUTE_2 + "/searchteams.php?t=" + Uri.parse(name).toString()
+        val url = BASE_ROUTE + "/searchteams.php?t=" + Uri.encode(name)
+
+        println("url: $url")
+
+        return url
+    }
+
+    fun getEventDetail(id: Int?): String {
+        return BASE_ROUTE + "/lookupevent.php?id=" + Uri.encode(id.toString())
     }
 
     fun getLast15Events(id: String?): String {
-        return BASE_ROUTE_2 + "/eventspastleague.php?id=" + Uri.parse(id).toString()
+        return BASE_ROUTE + "/eventspastleague.php?id=" + Uri.encode(id)
     }
 
     fun getNext15Events(id: String?): String {
-        return BASE_ROUTE_2 + "/eventsnextleague.php?id=" + Uri.parse(id).toString()
+        return BASE_ROUTE + "/eventsnextleague.php?id=" + Uri.encode(id)
     }
 }

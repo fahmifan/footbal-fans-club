@@ -21,6 +21,9 @@ data class Event(
     @SerializedName("dateEvent")
     var dateEvent: String? = "",
 
+    @SerializedName("intHomeShots")
+    var intHomeShots: String? = "",
+
     @SerializedName("intHomeScore")
     var intHomeScore: String? = "",
 
@@ -41,6 +44,9 @@ data class Event(
 
     @SerializedName("strAwayTeam")
     var strAwayTeam: String? = "",
+
+    @SerializedName("intAwayShots")
+    var intAwayShots: String? = "",
 
     @SerializedName("intAwayScore")
     var intAwayScore: String? = "",

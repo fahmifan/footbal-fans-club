@@ -28,15 +28,8 @@ class MainRecyclerViewAdapter(private val teams: List<Event>, private val listen
         fun bind(event: Event, listener: (Event) -> Unit) {
             tv_team_home.text = event.strHomeTeam
             tv_team_away.text = event.strAwayTeam
-            val homeScore = event.intHomeScore
-            val awayScore = event.intAwayScore
 
-            if(homeScore != null && awayScore != null) {
-                tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
-            } else {
-                tv_score.text = "- vs -"
-            }
-
+            tv_score.text = "${event?.intHomeScore ?: ""} vs ${event?.intAwayScore ?: ""}"
             tv_date.text = event.dateEvent
 
             containerView.setOnClickListener {

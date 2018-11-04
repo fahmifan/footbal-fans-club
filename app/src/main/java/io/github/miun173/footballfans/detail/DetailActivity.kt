@@ -15,58 +15,49 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         setContentView(R.layout.activity_detail)
 
         event = intent.getParcelableExtra("event")
+        val eventID = intent.getIntExtra("event_id", 0)
 
         val presenter = DetailPresenter(this, FetchImpl())
+
+        presenter.getEventDetail(eventID)
         presenter.getTeam(event.strHomeTeam, event.strAwayTeam)
     }
 
     override fun setLogo(homeBadge: String?, awayBadge: String?) {
-        Picasso.get().load(homeBadge).into(iv_home)
-        Picasso.get().load(awayBadge).into(iv_away)
+        Picasso.get().load(homeBadge)
+                .placeholder(R.drawable.img_load)
+                .error(R.drawable.img_error)
+                .into(iv_home)
+        Picasso.get().load(awayBadge)
+                .placeholder(R.drawable.img_load)
+                .error(R.drawable.img_error)
+                .into(iv_away)
     }
 
-    override fun setHeader() {
-        tv_home_team.text = event.strHomeTeam
-        tv_away_team.text = event.strAwayTeam
-        tv_date.text = event.dateEvent
+    override fun setEventDetail(event: Event?) {
+        tv_home_team.text = event?.strHomeTeam ?: ""
+        tv_away_team.text = event?.strAwayTeam ?: ""
+        tv_date.text = event?.dateEvent ?: ""
 
-        if(event.intAwayScore == null && event.intHomeScore == null) {
-            tv_score.text = "- vs -"
-        } else {
-            tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
-        }
-    }
+        tv_shots_home.text = event?.intHomeShots ?: ""
+        tv_shots_away.text = event?.intAwayShots ?: ""
 
-    fun splitEnterCutString(str: String?, delimiters: String): String {
-        val seq = str?.split(delimiters)
-        var newString = ""
-        for(i in 0..((seq?.size)?.minus(1) ?:  0 ?: 0)) {
-            newString += (seq?.get(i)?: "") + "\n"
-        }
+        val score = "${event?.intHomeScore ?: " "} vs ${event?.intAwayScore ?: " "}"
+        tv_score.text = score
 
-        return newString
-    }
+        goal_home.text = event?.strHomeGoalDetails ?: ""
+        goal_away.text = event?.strAwayGoalDetails ?: ""
 
-    override fun setGoals() {
-        goal_home.text = splitEnterCutString(event.strHomeGoalDetails, ";")
-        goal_away.text = splitEnterCutString(event.strAwayGoalDetails, ";")
-    }
+        gk_home.text = event?.strHomeLineupGoalkeeper ?: ""
+        gk_away.text = event?.strAwayLineupGoalkeeper ?: ""
 
-    override fun setLineups() {
-        // set gk
-        gk_home.text = event.strHomeLineupGoalkeeper
-        gk_away.text = event.strAwayLineupGoalkeeper
+        def_away.text = event?.strAwayLineupDefense ?: ""
+        def_home.text = event?.strHomeLineupDefense ?: ""
 
-        // set def
-        def_away.text = event.strAwayLineupDefense
-        def_home.text = event.strHomeLineupDefense
+        mid_away.text = event?.strAwayLineupMidfield ?: ""
+        mid_home.text = event?.strHomeLineupMidfield ?: ""
 
-        // set mid
-        mid_away.text = event.strAwayLineupMidfield
-        mid_home.text = event.strHomeLineupMidfield
-
-        // set fw
-        fw_home.text = event.strHomeLineupForward
-        fw_away.text = event.strAwayLineupForward
+        fw_home.text = event?.strHomeLineupForward ?: ""
+        fw_away.text = event?.strAwayLineupForward ?: ""
     }
 }

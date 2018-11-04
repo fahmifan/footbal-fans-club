@@ -26,8 +26,7 @@ class MainFragment: Fragment(), MainContract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val presenter = MainPresenter(this, FetchImpl(), Gson())
-        if(isNext) presenter.getNext15Events(EVENT_ID)
-        else presenter.getLast15Events(EVENT_ID)
+        presenter.getEvents(EVENT_ID, isNext)
 
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
@@ -37,10 +36,8 @@ class MainFragment: Fragment(), MainContract.View {
         rvAdapterMain = MainRecyclerViewAdapter(events) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
-
+            intent.putExtra("event_id", it.idEvent?.toInt())
             startActivity(intent)
-
-            println("event clicked: $events")
         }
 
         rv = events_list.apply {

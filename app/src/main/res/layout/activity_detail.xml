@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="4dp"
-    android:paddingRight="4dp"
     tools:context=".detail.DetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:orientation="vertical">
 
         <!--Date-->
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:layout_gravity="center"
-            android:text="Sat, 06 Oct 2018"/>
+            tools:text="Sat, 06 Oct 2018"/>
 
         <!--Team Badge, Name, Score-->
         <LinearLayout
@@ -86,18 +86,18 @@
         </LinearLayout>
 
         <!--Goal-->
+        <TextView
+            android:id="@+id/goal_text"
+            android:layout_width="50dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Goal"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/goal_text"
-                android:layout_width="50dp"
-                android:textAlignment="center"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Goal"/>
 
             <!--home-->
             <TextView
@@ -105,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scrollHorizontally="false"
+                android:textAlignment="textStart"
                 android:layout_alignParentLeft="true"
                 tools:text="Lorem Ipsum \nLorem Ipsum \nLorem Ipsum"
                 />
@@ -114,24 +115,24 @@
                 android:id="@+id/goal_away"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
                 android:layout_alignParentRight="true"
                 tools:text="Lorem Ipsum \nLorem Ipsum \nLorem Ipsum" />
 
         </RelativeLayout>
 
         <!--Shots-->
+        <TextView
+            android:id="@+id/tv_shots_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Shots"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
-
-            <!--shot text-->
-            <TextView
-                android:id="@+id/tv_shots_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Shots"/>
 
             <!--home-->
             <TextView
@@ -160,26 +161,25 @@
             />
 
         <!--Goalkeeper-->
+        <TextView
+            android:id="@+id/gk_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Goalkeeper"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
-            <!--home-->
+            <!--Goalkeeper-->
             <TextView
                 android:id="@+id/gk_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 tools:text="Cortuis"/>
-
-            <TextView
-                android:id="@+id/gk_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
-                android:text="Goalkeeper"/>
 
             <!--away-->
             <TextView
@@ -209,7 +209,9 @@
                 android:id="@+id/def_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:textAlignment="viewStart"
                 android:layout_alignParentLeft="true"
+                android:textAlignment="textStart"
                 tools:text="Cortuis"/>
 
             <!--away-->
@@ -217,6 +219,7 @@
                 android:id="@+id/def_away"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
                 android:layout_alignParentRight="true"
                 tools:text="Buffon"/>
 
@@ -240,6 +243,7 @@
                 android:id="@+id/mid_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="textStart"
                 android:layout_alignParentLeft="true"
                 tools:text="Cortuis"/>
 
@@ -249,6 +253,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:textAlignment="textEnd"
                 tools:text="Buffon"/>
 
         </RelativeLayout>
@@ -271,6 +276,7 @@
                 android:id="@+id/fw_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="textStart"
                 android:layout_alignParentLeft="true"
                 tools:text="Cortuis"/>
 
@@ -279,6 +285,7 @@
                 android:id="@+id/fw_away"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
                 android:layout_alignParentRight="true"
                 tools:text="Buffon"/>
 
