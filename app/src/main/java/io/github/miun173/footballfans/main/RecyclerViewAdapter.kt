@@ -6,17 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.model.Team
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_list.*
+import kotlinx.android.synthetic.main.event_list.*
 
-class RecyclerViewAdapter(private val teams: List<Event>, private val listener: (Team) -> Unit)
+class RecyclerViewAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
     : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(LayoutInflater
                     .from(parent.context)
-                    .inflate(R.layout.item_list,parent, false))
+                    .inflate(R.layout.event_list,parent, false))
 
     override fun getItemCount(): Int = teams.size
 
@@ -26,9 +25,15 @@ class RecyclerViewAdapter(private val teams: List<Event>, private val listener: 
 
     inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
         LayoutContainer {
-        fun bind(team: Event, listener: (Team) -> Unit) {
-            tv_club_1.text = team.strHomeTeam
-            tv_club_2.text = team.strAwayTeam
+        fun bind(event: Event, listener: (Event) -> Unit) {
+            tv_team_home.text = event.strHomeTeam
+            tv_team_away.text = event.strAwayTeam
+            tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
+            tv_date.text = event.dateEvent
+
+            containerView.setOnClickListener {
+                listener(event)
+            }
         }
     }
 }

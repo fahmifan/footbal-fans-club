@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tv_club_1"
+        android:id="@+id/tv_team_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -37,13 +37,11 @@
 
     </LinearLayout>
 
-
     <TextView
-        android:id="@+id/tv_club_2"
+        android:id="@+id/tv_team_away"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Chelsea" />
-
 
 </LinearLayout>

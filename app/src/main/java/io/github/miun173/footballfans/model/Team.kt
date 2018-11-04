@@ -1,14 +1,17 @@
 package io.github.miun173.footballfans.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Team(
         @SerializedName("idTeam")
-        var teamId: String? = null,
+        var teamId: String? = "",
 
         @SerializedName("strTeam")
-        var teamName: String? = null,
+        var teamName: String? = "",
 
         @SerializedName("strTeamBadge")
-        var teamBadge: String? = null
-)
+        var teamBadge: String? = ""
+) : Parcelable

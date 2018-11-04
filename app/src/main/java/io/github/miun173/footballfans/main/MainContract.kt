@@ -10,4 +10,8 @@ interface MainContract {
         fun showTeamList(teams: List<Team>?)
         fun showEvents(events: List<Event>)
     }
+
+    interface Presenter {
+        fun getEvents(id: String?)
+    }
 }

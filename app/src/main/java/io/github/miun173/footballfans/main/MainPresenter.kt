@@ -1,25 +1,25 @@
 package io.github.miun173.footballfans.main
 
 import com.google.gson.Gson
-import io.github.miun173.footballfans.model.EventsRes
-import io.github.miun173.footballfans.model.Team
-import io.github.miun173.footballfans.model.TeamResponse
-import io.github.miun173.footballfans.repository.ApiRepo
+import io.github.miun173.footballfans.model.Events
+import io.github.miun173.footballfans.model.Teams
+import io.github.miun173.footballfans.repository.Fetch
 import io.github.miun173.footballfans.repository.TheSportDbRoute
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 class MainPresenter(private val view: MainContract.View,
-                    private val apiRepo: ApiRepo,
-                    private val gson: Gson) {
+                    private val fetch: Fetch,
+                    private val gson: Gson)
+    :  MainContract.Presenter {
 
     fun getTeamsLeague(league: String?) {
         view.showLoading()
 
         doAsync {
             val data = gson.fromJson(
-                    apiRepo.doReq(TheSportDbRoute.getTeams(league)),
-                    TeamResponse::class.java)
+                    fetch.doReq(TheSportDbRoute.getTeams(league)),
+                    Teams::class.java)
 
             uiThread {
                 view.hideLoading()
@@ -31,13 +31,13 @@ class MainPresenter(private val view: MainContract.View,
         }
     }
 
-    fun getEvents(id: String?) {
+    override fun getEvents(id: String?) {
         view.showLoading()
 
         doAsync {
             val res = gson.fromJson(
-                    apiRepo.doReq(TheSportDbRoute.getLast15Events(id)),
-                    EventsRes::class.java)
+                    fetch.doReq(TheSportDbRoute.getLast15Events(id)),
+                    Events::class.java)
 
             uiThread {
                 view.hideLoading()

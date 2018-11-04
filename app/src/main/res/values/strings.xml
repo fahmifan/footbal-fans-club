@@ -34,9 +34,9 @@
         <item>Arsenal Football Club is a professional football club based in Islington, London, England, that plays in the Premier League, the top flight of English football.</item>
     </string-array>
 
-    <item type="id" name="club_image" />
-    <item type="id" name="club_name" />
-    <item type="id" name="club_details" />
+    <item name="club_image" type="id" />
+    <item name="club_name" type="id" />
+    <item name="club_details" type="id" />
 
 
 </resources>
