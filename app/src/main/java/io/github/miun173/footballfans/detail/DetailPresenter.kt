@@ -23,22 +23,10 @@ class DetailPresenter(private val view: DetailContract.View,
 
             detail.events?.map {
                 val date = it.dateEvent?.let { it1 -> convertDate(it1) }
-                it.dateEvent = "${date?.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())}, " +
+                    it.dateEvent = "${date?.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())}, " +
                         "${date?.get(Calendar.DATE)} " +
                         "${date?.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())} " +
                         "${date?.get(java.util.Calendar.YEAR)}"
-
-                it.strAwayGoalDetails = splitEnterCutString(it.strAwayGoalDetails, ";")
-                it.strAwayLineupGoalkeeper = splitEnterCutString(it.strAwayLineupGoalkeeper, ";")
-                it.strAwayLineupDefense = splitEnterCutString(it.strAwayLineupDefense , ";")
-                it.strAwayLineupMidfield = splitEnterCutString(it.strAwayLineupMidfield, ";")
-                it.strAwayLineupForward = splitEnterCutString(it.strAwayLineupForward, ";")
-
-                it.strHomeGoalDetails = splitEnterCutString(it.strHomeGoalDetails, ";")
-                it.strHomeLineupDefense = splitEnterCutString(it.strHomeLineupDefense, ";")
-                it.strHomeLineupMidfield = splitEnterCutString(it.strHomeLineupMidfield, ";")
-                it.strHomeLineupForward = splitEnterCutString(it.strAwayLineupForward, ";")
-                it.strHomeLineupGoalkeeper = splitEnterCutString(it.strHomeLineupGoalkeeper, ";")
             }
 
             uiThread {
