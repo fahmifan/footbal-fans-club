@@ -29,7 +29,12 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         tv_home_team.text = event.strHomeTeam
         tv_away_team.text = event.strAwayTeam
         tv_date.text = event.dateEvent
-        tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
+
+        if(event.intAwayScore == null && event.intHomeScore == null) {
+            tv_score.text = "- vs -"
+        } else {
+            tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
+        }
     }
 
     fun splitEnterCutString(str: String?, delimiters: String): String {
@@ -42,10 +47,26 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         return newString
     }
 
-    override fun setShot() {
-        tv_shots_home.text = splitEnterCutString(event.strHomeGoalDetails, ";")
-        tv_shots_away.text = splitEnterCutString(event.strAwayGoalDetails, ";")
+    override fun setGoals() {
+        goal_home.text = splitEnterCutString(event.strHomeGoalDetails, ";")
+        goal_away.text = splitEnterCutString(event.strAwayGoalDetails, ";")
     }
 
+    override fun setLineups() {
+        // set gk
+        gk_home.text = event.strHomeLineupGoalkeeper
+        gk_away.text = event.strAwayLineupGoalkeeper
 
+        // set def
+        def_away.text = event.strAwayLineupDefense
+        def_home.text = event.strHomeLineupDefense
+
+        // set mid
+        mid_away.text = event.strAwayLineupMidfield
+        mid_home.text = event.strHomeLineupMidfield
+
+        // set fw
+        fw_home.text = event.strHomeLineupForward
+        fw_away.text = event.strAwayLineupForward
+    }
 }

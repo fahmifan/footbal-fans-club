@@ -34,7 +34,7 @@ class MainRecyclerViewAdapter(private val teams: List<Event>, private val listen
             if(homeScore != null && awayScore != null) {
                 tv_score.text = "${event.intHomeScore} vs ${event.intAwayScore}"
             } else {
-                tv_score.text = "vs"
+                tv_score.text = "- vs -"
             }
 
             tv_date.text = event.dateEvent

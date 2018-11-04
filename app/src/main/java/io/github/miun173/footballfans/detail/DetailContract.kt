@@ -4,7 +4,8 @@ interface DetailContract {
     interface View {
         fun setHeader()
         fun setLogo(homeBadge: String?, awayBadge: String?)
-        fun setShot()
+        fun setGoals()
+        fun setLineups()
     }
 
     interface Presenter {

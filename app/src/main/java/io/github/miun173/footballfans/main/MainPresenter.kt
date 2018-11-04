@@ -20,6 +20,16 @@ class MainPresenter(private val view: MainContract.View,
         return newDate
     }
 
+    fun splitEnterCutString(str: String?, delimiters: String): String {
+        val seq = str?.split(delimiters)
+        var newString = ""
+        for(i in 0..((seq?.size)?.minus(1) ?:  0 ?: 0)) {
+            newString += (seq?.get(i)?: "") + "\n"
+        }
+
+        return newString
+    }
+
     override fun getNext15Events(id: String?) {
         view.showLoading()
 
@@ -27,6 +37,16 @@ class MainPresenter(private val view: MainContract.View,
             val res = gson.fromJson(
                     fetch.doReq(TheSportDbRoute.getNext15Events(id)),
                     Events::class.java)
+
+            res.events?.map {
+                it.strAwayLineupDefense = splitEnterCutString(it.strAwayLineupDefense , ";")
+                it.strAwayLineupMidfield = splitEnterCutString(it.strAwayLineupMidfield, ";")
+                it.strAwayLineupForward = splitEnterCutString(it.strAwayLineupForward, ";")
+
+                it.strHomeLineupDefense = splitEnterCutString(it.strHomeLineupDefense, ";")
+                it.strHomeLineupMidfield = splitEnterCutString(it.strHomeLineupMidfield, ";")
+                it.strHomeLineupForward = splitEnterCutString(it.strAwayLineupForward, ";")
+            }
 
             res.events?.map {
                 val date = it.dateEvent?.let { it1 -> convertDate(it1) }
@@ -51,6 +71,16 @@ class MainPresenter(private val view: MainContract.View,
             val res = gson.fromJson(
                     fetch.doReq(TheSportDbRoute.getLast15Events(id)),
                     Events::class.java)
+
+            res.events?.map {
+                it.strAwayLineupDefense = splitEnterCutString(it.strAwayLineupDefense , ";")
+                it.strAwayLineupMidfield = splitEnterCutString(it.strAwayLineupMidfield, ";")
+                it.strAwayLineupForward = splitEnterCutString(it.strAwayLineupForward, ";")
+
+                it.strHomeLineupDefense = splitEnterCutString(it.strHomeLineupDefense, ";")
+                it.strHomeLineupMidfield = splitEnterCutString(it.strHomeLineupMidfield, ";")
+                it.strHomeLineupForward = splitEnterCutString(it.strAwayLineupForward, ";")
+            }
 
             res.events?.map {
                 val date = it.dateEvent?.let { it1 -> convertDate(it1) }

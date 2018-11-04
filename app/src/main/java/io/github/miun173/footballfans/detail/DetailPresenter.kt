@@ -1,8 +1,6 @@
 package io.github.miun173.footballfans.detail
 
-import android.net.Uri
 import com.google.gson.Gson
-import io.github.miun173.footballfans.BuildConfig
 import io.github.miun173.footballfans.model.Teams
 import io.github.miun173.footballfans.repository.Fetch
 import io.github.miun173.footballfans.repository.TheSportDbRoute
@@ -15,16 +13,10 @@ class DetailPresenter(private val view: DetailContract.View,
                       private val fetch: Fetch)
     : DetailContract.Presenter {
 
-    val BASE_ROUTE = Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath("api")
-            .appendPath("v1")
-            .appendPath("json")
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("")
-
     override fun getTeam(homeName: String?, awayName: String?) {
         view.setHeader()
-        view.setShot()
+        view.setGoals()
+        view.setLineups()
 
         doAsync {
             val homeTeam =  Gson().fromJson(
@@ -44,5 +36,4 @@ class DetailPresenter(private val view: DetailContract.View,
             }
         }
     }
-
 }
