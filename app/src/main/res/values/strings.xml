@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Football Fans</string>
+    <string name="app_name">Match Scheduler</string>
+    <string name="action_favorite">fav</string>
 
     <string-array name="club_name">
         <item>Barcelona FC</item>

@@ -1,26 +1,84 @@
 package io.github.miun173.footballfans.detail
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.LinearLayout
 import com.squareup.picasso.Picasso
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.repository.FetchImpl
+import io.github.miun173.footballfans.repository.local.DBManagerImpl
+import io.github.miun173.footballfans.repository.remote.FetchImpl
 import kotlinx.android.synthetic.main.activity_detail.*
+import org.jetbrains.anko.design.snackbar
 
 class DetailActivity : AppCompatActivity(), DetailContract.View {
+
     lateinit var event: Event
+    lateinit var presenter: DetailPresenter
+    var eventID: Int = 0
+    private var menuItem: Menu? = null
+    private lateinit var mainLayout: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        event = intent.getParcelableExtra("event")
-        val eventID = intent.getIntExtra("event_id", 0)
+        mainLayout = lin_layout_main
 
-        val presenter = DetailPresenter(this, FetchImpl())
+        setSupportActionBar(detail_toolbar)
+        println("action bar showed >>> " + supportActionBar?.isShowing)
+
+        event = intent.getParcelableExtra("event")
+        eventID = intent.getIntExtra("event_id", 0)
+
+        presenter = DetailPresenter(this, FetchImpl(), DBManagerImpl(applicationContext))
 
         presenter.getEventDetail(eventID)
         presenter.getTeam(event.strHomeTeam, event.strAwayTeam)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when(item?.itemId) {
+        R.id.match_fav_menu -> {
+            presenter.setFaved(event)
+            true
+        }
+
+        else -> {
+            false
+        }
+    }
+
+    override fun showFav(show: Boolean) {
+        if(show) {
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
+                R.drawable.ic_baseline_favorite_24px)
+            return
+        }
+
+        menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
+                R.drawable.ic_baseline_favorite_border_24px)
+    }
+
+    override fun showSetFavSuccessfull() {
+        snackbar(mainLayout, "Match added to favorite").show()
+    }
+
+    override fun showSetFavFailed() {
+        snackbar(mainLayout, "unable add to favorite").show()
+    }
+
+    override fun showUsetFavFailed() {
+        snackbar(mainLayout, "Match removed from favorite").show()
     }
 
     override fun setLogo(homeBadge: String?, awayBadge: String?) {

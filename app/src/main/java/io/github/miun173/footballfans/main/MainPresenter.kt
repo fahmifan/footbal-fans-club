@@ -2,8 +2,8 @@ package io.github.miun173.footballfans.main
 
 import com.google.gson.Gson
 import io.github.miun173.footballfans.model.Events
-import io.github.miun173.footballfans.repository.Fetch
-import io.github.miun173.footballfans.repository.TheSportDbRoute
+import io.github.miun173.footballfans.repository.remote.Fetch
+import io.github.miun173.footballfans.repository.remote.TheSportDbRoute
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.util.*

@@ -6,10 +6,15 @@ interface DetailContract {
     interface View {
         fun setEventDetail(event: Event?)
         fun setLogo(homeBadge: String?, awayBadge: String?)
+        fun showFav(show: Boolean)
+        fun showSetFavFailed()
+        fun showUsetFavFailed()
+        fun showSetFavSuccessfull()
     }
 
     interface Presenter {
         fun getTeam(homeName: String?, awayName: String?)
         fun getEventDetail(eventID: Int?)
+        fun setFaved(event: Event?)
     }
 }

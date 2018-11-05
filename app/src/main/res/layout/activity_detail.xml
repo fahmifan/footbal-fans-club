@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lin_layout_main"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,296 +9,310 @@
     android:orientation="vertical"
     tools:context=".detail.DetailActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/detail_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-        <!--Date-->
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_gravity="center"
-            tools:text="Sat, 06 Oct 2018"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <!--Team Badge, Name, Score-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:orientation="vertical">
 
-            <!--Home-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <!--Home Team-->
-                <ImageView
-                    android:id="@+id/iv_home"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    tools:src="@drawable/img_barca"/>
-
-                <TextView
-                    android:id="@+id/tv_home_team"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    tools:text="Barca"/>
-
-            </LinearLayout>
-
-            <!--Score-->
+            <!--Date-->
             <TextView
-                android:id="@+id/tv_score"
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minWidth="64dp"
                 android:padding="8dp"
-                tools:text="0 vs 0"/>
+                android:layout_gravity="center"
+                tools:text="Sat, 06 Oct 2018"/>
 
-            <!--Away-->
+            <!--Team Badge, Name, Score-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
-                <!--Away Team-->
-                <ImageView
-                    android:id="@+id/iv_away"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    tools:src="@drawable/img_arsenal" />
-
-                <TextView
-                    android:id="@+id/tv_away_team"
-                    android:layout_width="100dp"
-                    android:textAlignment="center"
+                <!--Home-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <!--Home Team-->
+                    <ImageView
+                        android:id="@+id/iv_home"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        tools:src="@drawable/img_barca"/>
+
+                    <TextView
+                        android:id="@+id/tv_home_team"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textAlignment="center"
+                        tools:text="Barca"/>
+
+                </LinearLayout>
+
+                <!--Score-->
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:minWidth="64dp"
                     android:padding="8dp"
-                    tools:text="Arsenal"/>
+                    tools:text="0 vs 0"/>
+
+                <!--Away-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <!--Away Team-->
+                    <ImageView
+                        android:id="@+id/iv_away"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        tools:src="@drawable/img_arsenal" />
+
+                    <TextView
+                        android:id="@+id/tv_away_team"
+                        android:layout_width="100dp"
+                        android:textAlignment="center"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        tools:text="Arsenal"/>
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
-
-        <!--Goal-->
-        <TextView
-            android:id="@+id/goal_text"
-            android:layout_width="50dp"
-            android:textAlignment="center"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Goal"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-            <!--home-->
+            <!--Goal-->
             <TextView
-                android:id="@+id/goal_home"
-                android:layout_width="100dp"
+                android:id="@+id/goal_text"
+                android:layout_width="50dp"
+                android:textAlignment="center"
                 android:layout_height="wrap_content"
-                android:scrollHorizontally="false"
-                android:textAlignment="textStart"
-                android:layout_alignParentLeft="true"
-                tools:text="Lorem Ipsum \nLorem Ipsum \nLorem Ipsum"
+                android:layout_gravity="center_horizontal"
+                android:text="Goal"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <!--home-->
+                <TextView
+                    android:id="@+id/goal_home"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:scrollHorizontally="false"
+                    android:textAlignment="textStart"
+                    android:layout_alignParentLeft="true"
+                    tools:text="Lorem Ipsum \nLorem Ipsum \nLorem Ipsum"
+                    />
+
+                <!--away-->
+                <TextView
+                    android:id="@+id/goal_away"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_alignParentRight="true"
+                    tools:text="Lorem Ipsum \nLorem Ipsum \nLorem Ipsum" />
+
+            </RelativeLayout>
+
+            <!--Shots-->
+            <TextView
+                android:id="@+id/tv_shots_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Shots"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <!--home-->
+                <TextView
+                    android:id="@+id/tv_shots_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    tools:text="4"/>
+
+                <!--away-->
+                <TextView
+                    android:id="@+id/tv_shots_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    tools:text="4"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lineups"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal"
                 />
-
-            <!--away-->
-            <TextView
-                android:id="@+id/goal_away"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
-                android:layout_alignParentRight="true"
-                tools:text="Lorem Ipsum \nLorem Ipsum \nLorem Ipsum" />
-
-        </RelativeLayout>
-
-        <!--Shots-->
-        <TextView
-            android:id="@+id/tv_shots_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Shots"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-            <!--home-->
-            <TextView
-                android:id="@+id/tv_shots_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                tools:text="4"/>
-
-            <!--away-->
-            <TextView
-                android:id="@+id/tv_shots_away"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                tools:text="4"/>
-
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lineups"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal"
-            />
-
-        <!--Goalkeeper-->
-        <TextView
-            android:id="@+id/gk_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Goalkeeper"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
 
             <!--Goalkeeper-->
             <TextView
-                android:id="@+id/gk_home"
-                android:layout_width="100dp"
+                android:id="@+id/gk_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                tools:text="Cortuis"/>
+                android:layout_gravity="center_horizontal"
+                android:text="Goalkeeper"/>
 
-            <!--away-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <!--Goalkeeper-->
+                <TextView
+                    android:id="@+id/gk_home"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    tools:text="Cortuis"/>
+
+                <!--away-->
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/gk_away"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    tools:text="Buffon"/>
+
+            </RelativeLayout>
+
+            <!--Defense-->
             <TextView
-                android:gravity="right"
-                android:id="@+id/gk_away"
-                android:layout_width="100dp"
+                android:id="@+id/def_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                tools:text="Buffon"/>
+                android:layout_gravity="center_horizontal"
+                android:text="Defense"/>
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
 
-        <!--Defense-->
-        <TextView
-            android:id="@+id/def_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Defense"/>
+                <!--home-->
+                <TextView
+                    android:id="@+id/def_home"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    tools:textAlignment="viewStart"
+                    android:layout_alignParentLeft="true"
+                    android:textAlignment="textStart"
+                    tools:text="Cortuis"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+                <!--away-->
+                <TextView
+                    android:id="@+id/def_away"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_alignParentRight="true"
+                    tools:text="Buffon"/>
 
-            <!--home-->
+            </RelativeLayout>
+
+            <!--Midfilder-->
             <TextView
-                android:id="@+id/def_home"
-                android:layout_width="100dp"
+                android:id="@+id/mid_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:textAlignment="viewStart"
-                android:layout_alignParentLeft="true"
-                android:textAlignment="textStart"
-                tools:text="Cortuis"/>
+                android:layout_gravity="center_horizontal"
+                android:text="Midfielder"/>
 
-            <!--away-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <!--home-->
+                <TextView
+                    android:id="@+id/mid_home"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:layout_alignParentLeft="true"
+                    tools:text="Cortuis"/>
+
+                <!--away-->
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/mid_away"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    tools:text="Buffon"/>
+
+            </RelativeLayout>
+
+            <!--Forward-->
             <TextView
-                android:id="@+id/def_away"
-                android:layout_width="100dp"
+                android:id="@+id/fw_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_alignParentRight="true"
-                tools:text="Buffon"/>
+                android:layout_gravity="center_horizontal"
+                android:text="Forward"/>
 
-        </RelativeLayout>
-
-        <!--Midfilder-->
-        <TextView
-            android:id="@+id/mid_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Midfielder"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-            <!--home-->
-            <TextView
-                android:id="@+id/mid_home"
-                android:layout_width="100dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                android:layout_alignParentLeft="true"
-                tools:text="Cortuis"/>
+                android:gravity="center_horizontal">
 
-            <!--away-->
-            <TextView
-                android:gravity="right"
-                android:id="@+id/mid_away"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                tools:text="Buffon"/>
+                <!--home-->
+                <TextView
+                    android:id="@+id/fw_home"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:layout_alignParentLeft="true"
+                    tools:text="Cortuis"/>
 
-        </RelativeLayout>
+                <!--away-->
+                <TextView
+                    android:id="@+id/fw_away"
+                    android:layout_width="100dp"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    tools:text="Buffon"/>
 
-        <!--Forward-->
-        <TextView
-            android:id="@+id/fw_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Forward"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-            <!--home-->
-            <TextView
-                android:id="@+id/fw_home"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                android:layout_alignParentLeft="true"
-                tools:text="Cortuis"/>
-
-            <!--away-->
-            <TextView
-                android:id="@+id/fw_away"
-                android:layout_width="100dp"
-                android:gravity="right"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                tools:text="Buffon"/>
-
-        </RelativeLayout>
+            </RelativeLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+</LinearLayout>

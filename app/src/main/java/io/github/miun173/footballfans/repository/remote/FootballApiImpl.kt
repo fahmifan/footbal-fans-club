@@ -1,4 +1,4 @@
-package io.github.miun173.footballfans.repository
+package io.github.miun173.footballfans.repository.remote
 
 import android.net.Uri
 import io.github.miun173.footballfans.BuildConfig

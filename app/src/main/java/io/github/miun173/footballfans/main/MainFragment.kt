@@ -13,7 +13,7 @@ import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.detail.DetailActivity
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.model.Team
-import io.github.miun173.footballfans.repository.FetchImpl
+import io.github.miun173.footballfans.repository.remote.FetchImpl
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment: Fragment(), MainContract.View {

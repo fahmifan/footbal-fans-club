@@ -1,4 +1,4 @@
-package io.github.miun173.footballfans.repository
+package io.github.miun173.footballfans.repository.remote
 
 import io.github.miun173.footballfans.model.Team
 import retrofit2.Call
