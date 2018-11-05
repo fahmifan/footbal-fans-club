@@ -1,4 +1,4 @@
-package io.github.miun173.footballfans.main
+package io.github.miun173.footballfans.main.schedule
 
 import com.google.gson.Gson
 import io.github.miun173.footballfans.model.Events
@@ -11,7 +11,7 @@ import java.util.*
 class SchedulePresenter(private val schedulerView: ScheduleContract.SchedulerView,
                         private val fetch: Fetch,
                         private val gson: Gson)
-    :  ScheduleContract.Presenter {
+    : ScheduleContract.Presenter {
 
     private fun convertDate(date: String): Calendar {
         val dateChar = date.split("-")

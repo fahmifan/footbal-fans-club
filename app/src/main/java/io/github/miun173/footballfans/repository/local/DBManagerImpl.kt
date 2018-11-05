@@ -9,6 +9,23 @@ import org.jetbrains.anko.db.select
 import java.sql.SQLException
 
 class DBManagerImpl(private val ctx: Context): DBManager {
+    override fun getFavs(): List<DBContract.FavMatch> {
+        try {
+            var favs: List<DBContract.FavMatch> = ArrayList()
+
+            ctx.database.use {
+                val res = select(DBContract.FavMatch.TABLE_NAME)
+                favs = res.parseList(classParser())
+            }
+
+            return favs
+
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            return emptyList()
+        }
+    }
+
     /**
      * Check if match already in faved by query matchID
      */

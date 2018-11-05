@@ -1,4 +1,4 @@
-package io.github.miun173.footballfans.main
+package io.github.miun173.footballfans.main.schedule
 
 import io.github.miun173.footballfans.model.Event
 

@@ -7,4 +7,5 @@ interface DBManager {
     fun deleteFavMatch(favID: Int): Int
     fun checkFav(id: Int): Boolean
     fun getFav(matchID: Int): List<DBContract.FavMatch>
+    fun getFavs(): List<DBContract.FavMatch>
 }

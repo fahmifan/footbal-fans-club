@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.event_list.*
+import kotlinx.android.synthetic.main.item_event.*
 
-class ScheduleRVAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
-    : RecyclerView.Adapter<ScheduleRVAdapter.ViewHolder>() {
+class EventsRVAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
+    : RecyclerView.Adapter<EventsRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(LayoutInflater
                     .from(parent.context)
-                    .inflate(R.layout.event_list,parent, false))
+                    .inflate(R.layout.item_event,parent, false))
 
     override fun getItemCount(): Int = teams.size
 

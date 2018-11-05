@@ -1,4 +1,4 @@
-package io.github.miun173.footballfans.main
+package io.github.miun173.footballfans.main.schedule
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,12 +12,13 @@ import android.widget.Toast
 import com.google.gson.Gson
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.detail.DetailActivity
+import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.remote.FetchImpl
 import kotlinx.android.synthetic.main.fragment_schedule.*
 
 class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
-    private lateinit var rvAdapterMain: ScheduleRVAdapter
+    private lateinit var rvAdapterMain: EventsRVAdapter
     private lateinit var rv: RecyclerView
     private lateinit var rvManager: RecyclerView.LayoutManager
 
@@ -43,7 +44,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
 
     override fun showEvents(events: List<Event>) {
         rvManager = LinearLayoutManager(context)
-        rvAdapterMain = ScheduleRVAdapter(events) {
+        rvAdapterMain = EventsRVAdapter(events) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())
