@@ -12,7 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
         android:layout_weight="2"
         android:layout_gravity="center_vertical"
         tools:text="West Ham" />
@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
             android:padding="8dp"
             tools:text="Sat, 06 Oct 2018" />
 
@@ -38,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textAlignment="center"
             android:padding="8dp"
             tools:text="0 vs 1" />
@@ -53,6 +54,7 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="2"
         android:gravity="right"
+        android:textSize="18sp"
         android:padding="8dp"
         tools:text="Chelsea" />
 
