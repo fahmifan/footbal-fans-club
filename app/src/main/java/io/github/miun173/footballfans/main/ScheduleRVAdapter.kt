@@ -9,8 +9,8 @@ import io.github.miun173.footballfans.model.Event
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.event_list.*
 
-class MainRecyclerViewAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
-    : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
+class ScheduleRVAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
+    : RecyclerView.Adapter<ScheduleRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(LayoutInflater

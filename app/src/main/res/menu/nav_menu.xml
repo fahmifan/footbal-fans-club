@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_pastmatch"
+        android:icon="@drawable/ic_baseline_calendar_today_24px"
+        android:title="Prev Match"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/nav_nextmatch"
+        android:icon="@drawable/ic_baseline_calendar_today_24px"
+        android:title="Next Match"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_favmatch"
+        android:icon="@drawable/ic_baseline_stars_24px"
+        android:title="Favorite"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -8,32 +8,42 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.gson.Gson
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.detail.DetailActivity
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.model.Team
 import io.github.miun173.footballfans.repository.remote.FetchImpl
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_schedule.*
 
-class MainFragment: Fragment(), MainContract.View {
-    lateinit var rvAdapterMain: MainRecyclerViewAdapter
-    lateinit var rv: RecyclerView
-    lateinit var rvManager: RecyclerView.LayoutManager
+class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
+    private lateinit var rvAdapterMain: ScheduleRVAdapter
+    private lateinit var rv: RecyclerView
+    private lateinit var rvManager: RecyclerView.LayoutManager
+
+    lateinit var presenter: SchedulePresenter
 
     val EVENT_ID = "4328"
     var isNext = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val presenter = MainPresenter(this, FetchImpl(), Gson())
-        presenter.getEvents(EVENT_ID, isNext)
+    override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_schedule, parent, false)
 
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        presenter = SchedulePresenter(this, FetchImpl(), Gson())
+//        presenter.getEvents(EVENT_ID, isNext)
+
+        return view
     }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.getEvents(EVENT_ID, isNext)
+    }
+
 
     override fun showEvents(events: List<Event>) {
         rvManager = LinearLayoutManager(context)
-        rvAdapterMain = MainRecyclerViewAdapter(events) {
+        rvAdapterMain = ScheduleRVAdapter(events) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())
@@ -47,14 +57,9 @@ class MainFragment: Fragment(), MainContract.View {
         }
     }
 
-    override fun showLoading() {
+    override fun showLoading(show: Boolean) {
+        if(show) {
+            Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+        }
     }
-
-    override fun hideLoading() {
-    }
-
-    override fun showTeamList(teams: List<Team>?) {
-    }
-
-
 }

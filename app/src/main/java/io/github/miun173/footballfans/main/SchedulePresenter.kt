@@ -8,10 +8,10 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.util.*
 
-class MainPresenter(private val view: MainContract.View,
-                    private val fetch: Fetch,
-                    private val gson: Gson)
-    :  MainContract.Presenter {
+class SchedulePresenter(private val schedulerView: ScheduleContract.SchedulerView,
+                        private val fetch: Fetch,
+                        private val gson: Gson)
+    :  ScheduleContract.Presenter {
 
     private fun convertDate(date: String): Calendar {
         val dateChar = date.split("-")
@@ -21,7 +21,8 @@ class MainPresenter(private val view: MainContract.View,
     }
 
     override fun getEvents(id: String?, isNext: Boolean) {
-        view.showLoading()
+        schedulerView.showLoading(true)
+
         var res: Events
         doAsync {
             res = gson.fromJson(
@@ -43,11 +44,10 @@ class MainPresenter(private val view: MainContract.View,
             }
 
             uiThread {
-                view.hideLoading()
+                schedulerView.showLoading(false)
                 println("events:" + res.events.toString())
 
-                // i don't know what this is do
-                res.events?.let { its -> view.showEvents(its) }
+                res.events?.let { its -> schedulerView.showEvents(its) }
             }
         }
     }
