@@ -35,7 +35,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
     override fun setFavmatch(events: List<Event?>) {
         // set list
         rvManager = LinearLayoutManager(context)
-        rvAdapterMain = EventsRVAdapter(events as List<Event>) {
+        rvAdapterMain = EventsRVAdapter(events as MutableList<Event>) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())

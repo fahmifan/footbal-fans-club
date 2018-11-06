@@ -10,7 +10,8 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:paddingBottom="60dp"/>
 
     <LinearLayout
         android:id="@+id/bottom_layout"
@@ -24,8 +25,8 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:itemBackground="@color/colorPrimary"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/textIcon"
+            app:itemTextColor="@color/textIcon"
             app:menu="@menu/nav_menu"/>
 
     </LinearLayout>

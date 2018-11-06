@@ -19,21 +19,21 @@ class MainActivity : AppCompatActivity() {
                 .commit()
 
         bottom_nav.setOnNavigationItemSelectedListener {
+            val scheduleFrag = ScheduleFragment()
+
             when(it.itemId) {
                 R.id.nav_pastmatch -> {
-                    val view = ScheduleFragment()
-                    view.isNext = false
+                    scheduleFrag.isNext = false
                     supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, view)
+                            .replace(R.id.fragment_container, scheduleFrag)
                             .commit()
                     true
                 }
 
                 R.id.nav_nextmatch -> {
-                    val view = ScheduleFragment()
-                    view.isNext = true
+                    scheduleFrag.isNext = true
                     supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, view)
+                            .replace(R.id.fragment_container, scheduleFrag)
                             .commit()
                     true
                 }
@@ -48,6 +48,16 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     true
                 }
+            }
+        }
+
+        bottom_nav.setOnNavigationItemReselectedListener {
+            when(it.itemId) {
+                R.id.nav_nextmatch -> {}
+
+                R.id.nav_favmatch -> {}
+
+                R.id.nav_pastmatch -> {}
             }
         }
     }

@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         println("action bar showed >>> " + supportActionBar?.isShowing)
 
         event = intent.getParcelableExtra("event")
-        eventID = intent.getIntExtra("event_id", 0)
+        eventID = event.idEvent?.toInt() ?: -1
 
         presenter = DetailPresenter(this, FetchImpl(), DBManagerImpl(applicationContext))
 
@@ -86,6 +86,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
                 .placeholder(R.drawable.img_load)
                 .error(R.drawable.img_error)
                 .into(iv_home)
+
         Picasso.get().load(awayBadge)
                 .placeholder(R.drawable.img_load)
                 .error(R.drawable.img_error)
@@ -100,8 +101,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         tv_shots_home.text = event?.intHomeShots ?: ""
         tv_shots_away.text = event?.intAwayShots ?: ""
 
-        val score = "${event?.intHomeScore ?: " "} vs ${event?.intAwayScore ?: " "}"
-        tv_score.text = score
+        tv_score.text = getString(R.string.score, event?.intHomeScore ?: "", event?.intAwayScore ?: "")
 
         goal_home.text = event?.strHomeGoalDetails ?: ""
         goal_away.text = event?.strAwayGoalDetails ?: ""

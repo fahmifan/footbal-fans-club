@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_schedule.*
 
 class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
     private lateinit var rvAdapterMain: EventsRVAdapter
-    private lateinit var rv: RecyclerView
     private lateinit var rvManager: RecyclerView.LayoutManager
 
     lateinit var presenter: SchedulePresenter
@@ -27,35 +26,36 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
     val EVENT_ID = "4328"
     var isNext = false
 
+    val events: MutableList<Event> = mutableListOf()
+
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_schedule, parent, false)
 
         presenter = SchedulePresenter(this, FetchImpl(), Gson())
-//        presenter.getEvents(EVENT_ID, isNext)
-
-        return view
-    }
-
-    override fun onStart() {
-        super.onStart()
-        presenter.getEvents(EVENT_ID, isNext)
-    }
-
-
-    override fun showEvents(events: List<Event>) {
         rvManager = LinearLayoutManager(context)
-        rvAdapterMain = EventsRVAdapter(events) {
+
+        rvAdapterMain = EventsRVAdapter(events as MutableList<Event>) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())
             startActivity(intent)
         }
 
-        rv = events_list.apply {
-            setHasFixedSize(true)
+        presenter.getEvents(EVENT_ID, isNext)
+
+        return view
+    }
+
+    override fun showEvents(events: List<Event>) {
+        this.events.clear()
+        this.events.addAll(events)
+
+        events_list.apply {
             layoutManager = rvManager
             adapter = rvAdapterMain
         }
+
+        rvAdapterMain.notifyDataSetChanged()
     }
 
     override fun showLoading(show: Boolean) {

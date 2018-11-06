@@ -13,6 +13,8 @@
         <item>Arsenal FC</item>
     </string-array>
 
+    <string name="score">%1$s vs %2$s</string>
+
     <array name="club_image">
         <item>@drawable/img_barca</item>
         <item>@drawable/img_madrid</item>

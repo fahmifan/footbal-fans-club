@@ -9,13 +9,17 @@ import io.github.miun173.footballfans.model.Event
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_event.*
 
-class EventsRVAdapter(private val teams: List<Event>, private val listener: (Event) -> Unit)
+class EventsRVAdapter(private val teams: MutableList<Event>, private val listener: (Event) -> Unit)
     : RecyclerView.Adapter<EventsRVAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            ViewHolder(LayoutInflater
-                    .from(parent.context)
-                    .inflate(R.layout.item_event,parent, false))
+    lateinit var parent: ViewGroup
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        this.parent = parent
+        return ViewHolder(LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.item_event,parent, false))
+    }
 
     override fun getItemCount(): Int = teams.size
 
@@ -29,7 +33,8 @@ class EventsRVAdapter(private val teams: List<Event>, private val listener: (Eve
             tv_team_home.text = event.strHomeTeam
             tv_team_away.text = event.strAwayTeam
 
-            tv_score.text = "${event?.intHomeScore ?: ""} vs ${event?.intAwayScore ?: ""}"
+            // gabisa import getString()
+            tv_score.text = parent.context.getString(R.string.score, event.intHomeScore ?: "", event.intAwayScore ?: "")
             tv_date.text = event.dateEvent
 
             containerView.setOnClickListener {
