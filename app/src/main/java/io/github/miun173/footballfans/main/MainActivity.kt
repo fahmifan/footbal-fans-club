@@ -53,7 +53,8 @@ class MainActivity : AppCompatActivity() {
 
         bottom_nav.setOnNavigationItemReselectedListener {
             when(it.itemId) {
-                R.id.nav_nextmatch -> {}
+                R.id.nav_nextmatch -> {
+                }
 
                 R.id.nav_favmatch -> {}
 

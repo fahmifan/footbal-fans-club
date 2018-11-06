@@ -46,14 +46,23 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
         return view
     }
 
-    override fun showEvents(events: List<Event>) {
-        this.events.clear()
-        this.events.addAll(events)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         events_list.apply {
             layoutManager = rvManager
             adapter = rvAdapterMain
         }
+    }
+
+    override fun showEvents(events: List<Event>) {
+        this.events.clear()
+        this.events.addAll(events)
+
+//        events_list.apply {
+//            layoutManager = rvManager
+//            adapter = rvAdapterMain
+//        }
 
         rvAdapterMain.notifyDataSetChanged()
     }

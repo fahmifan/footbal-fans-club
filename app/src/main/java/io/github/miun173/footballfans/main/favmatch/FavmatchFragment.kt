@@ -19,9 +19,11 @@ import kotlinx.android.synthetic.main.fragment_schedule.*
 
 class FavmatchFragment: Fragment(), FavmatchContract.View {
     lateinit var presenter: FavmatchContract.Presenter
-    private lateinit var rvAdapterMain: EventsRVAdapter
+    private lateinit var rvEventAdapter: EventsRVAdapter
     private lateinit var rv: RecyclerView
     private lateinit var rvManager: RecyclerView.LayoutManager
+
+    val events: MutableList<Event> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_favmatch, parent, false)
@@ -29,24 +31,31 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
         presenter = FavmatchPresenter(this, FetchImpl(), DBManagerImpl(context!!))
         presenter.getFavmatch()
 
-        return view
-    }
-
-    override fun setFavmatch(events: List<Event?>) {
-        // set list
         rvManager = LinearLayoutManager(context)
-        rvAdapterMain = EventsRVAdapter(events as MutableList<Event>) {
+        rvEventAdapter = EventsRVAdapter(events as MutableList<Event>) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())
             startActivity(intent)
         }
 
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         rv = events_list.apply {
             setHasFixedSize(true)
             layoutManager = rvManager
-            adapter = rvAdapterMain
+            adapter = rvEventAdapter
         }
+    }
+
+    override fun setFavmatch(events: List<Event?>) {
+        // set list
+        this.events.clear()
+        this.events.addAll(events as MutableList<Event>)
+        rvEventAdapter.notifyDataSetChanged()
     }
 
     override fun showLoading(show: Boolean) {
