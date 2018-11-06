@@ -7,6 +7,7 @@ interface FavmatchContract {
         fun setFavmatch(event: List<Event?>)
         fun showLoading(show: Boolean)
         fun showNoFav()
+        fun showFavFailed()
     }
 
     interface Presenter {

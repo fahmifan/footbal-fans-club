@@ -5,14 +5,13 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBManagerImpl
 import io.github.miun173.footballfans.repository.remote.FetchImpl
 import kotlinx.android.synthetic.main.activity_detail.*
-import org.jetbrains.anko.design.snackbar
 
 class DetailActivity : AppCompatActivity(), DetailContract.View {
 
@@ -20,13 +19,10 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
     lateinit var presenter: DetailPresenter
     var eventID: Int = 0
     private var menuItem: Menu? = null
-    private lateinit var mainLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-
-        mainLayout = lin_layout_main
 
         setSupportActionBar(detail_toolbar)
         println("action bar showed >>> " + supportActionBar?.isShowing)
@@ -69,16 +65,20 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
                 R.drawable.ic_baseline_favorite_border_24px)
     }
 
-    override fun showSetFavSuccessfull() {
-        snackbar(mainLayout, "Match added to favorite").show()
+    override fun showSetFavSuccess() {
+        Toast.makeText(applicationContext, "Match added to favorite", Toast.LENGTH_SHORT).show()
     }
 
     override fun showSetFavFailed() {
-        snackbar(mainLayout, "unable add to favorite").show()
+        Toast.makeText(applicationContext, "Unable add to favorite", Toast.LENGTH_SHORT).show()
     }
 
-    override fun showUsetFavFailed() {
-        snackbar(mainLayout, "Match removed from favorite").show()
+    override fun showUnsetSuccess() {
+        Toast.makeText(applicationContext, "Match removed from favorite", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showUnsetFavFailed() {
+        Toast.makeText(applicationContext, "Failed to removed from favorite", Toast.LENGTH_SHORT).show()
     }
 
     override fun setLogo(homeBadge: String?, awayBadge: String?) {

@@ -15,7 +15,7 @@ import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBManagerImpl
 import io.github.miun173.footballfans.repository.remote.FetchImpl
-import kotlinx.android.synthetic.main.fragment_schedule.*
+import kotlinx.android.synthetic.main.fragment_favmatch.*
 
 class FavmatchFragment: Fragment(), FavmatchContract.View {
     lateinit var presenter: FavmatchContract.Presenter
@@ -44,7 +44,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rv = events_list.apply {
+        rv = rv_favmatch.apply {
             setHasFixedSize(true)
             layoutManager = rvManager
             adapter = rvEventAdapter
@@ -65,6 +65,11 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
     }
 
     override fun showNoFav() {
-        Toast.makeText(context, "No favorite match...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "No Favorite Match", Toast.LENGTH_SHORT).show()
     }
+
+    override fun showFavFailed() {
+        Toast.makeText(context, "Failed load favorite match", Toast.LENGTH_SHORT).show()
+    }
+
 }

@@ -35,6 +35,7 @@ class DetailPresenter(private val view: DetailContract.View,
                     return
                 }
 
+                view.showSetFavSuccess()
                 view.showFav(true)
             }
 
@@ -48,13 +49,14 @@ class DetailPresenter(private val view: DetailContract.View,
 
         if(deletedID.equals(-1)) {
             // show failure message
-            view.showUsetFavFailed()
+            view.showUnsetFavFailed()
             println("unable to unset fav match")
             return
         }
 
         println("deletedID >>> $deletedID")
 
+        view.showUnsetSuccess()
         view.showFav(false)
     }
 

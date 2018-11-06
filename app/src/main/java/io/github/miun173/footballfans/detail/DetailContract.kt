@@ -8,8 +8,9 @@ interface DetailContract {
         fun setLogo(homeBadge: String?, awayBadge: String?)
         fun showFav(show: Boolean)
         fun showSetFavFailed()
-        fun showUsetFavFailed()
-        fun showSetFavSuccessfull()
+        fun showUnsetFavFailed()
+        fun showUnsetSuccess()
+        fun showSetFavSuccess()
     }
 
     interface Presenter {
