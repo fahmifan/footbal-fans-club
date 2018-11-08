@@ -1,11 +1,13 @@
 package io.github.miun173.footballfans.detail
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+//import android.support.v4.content.ContextCompat
+//import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.squareup.picasso.Picasso
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event

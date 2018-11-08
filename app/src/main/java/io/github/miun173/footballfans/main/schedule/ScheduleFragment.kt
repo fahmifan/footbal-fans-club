@@ -2,13 +2,13 @@ package io.github.miun173.footballfans.main.schedule
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.detail.DetailActivity
@@ -34,7 +34,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
         presenter = SchedulePresenter(this, FetchImpl(), Gson())
         rvManager = LinearLayoutManager(context)
 
-        rvAdapterMain = EventsRVAdapter(events as MutableList<Event>) {
+        rvAdapterMain = EventsRVAdapter(events) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())

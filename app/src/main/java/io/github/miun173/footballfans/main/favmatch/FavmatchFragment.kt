@@ -2,13 +2,13 @@ package io.github.miun173.footballfans.main.favmatch
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.detail.DetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
@@ -28,11 +28,12 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_favmatch, parent, false)
 
+        // if there is no context there is no way to access the DB, so just NPE it
         presenter = FavmatchPresenter(this, FetchImpl(), DBManagerImpl(context!!))
         presenter.getFavmatch()
 
         rvManager = LinearLayoutManager(context)
-        rvEventAdapter = EventsRVAdapter(events as MutableList<Event>) {
+        rvEventAdapter = EventsRVAdapter(events) {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())
@@ -49,6 +50,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
             layoutManager = rvManager
             adapter = rvEventAdapter
         }
+
     }
 
     override fun setFavmatch(events: List<Event?>) {

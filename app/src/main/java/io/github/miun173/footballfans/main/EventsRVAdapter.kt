@@ -1,9 +1,9 @@
 package io.github.miun173.footballfans.main
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
 import kotlinx.android.extensions.LayoutContainer

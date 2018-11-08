@@ -12,7 +12,7 @@ class DBHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, DBContract.DB_NAME, 
         @Synchronized
         fun getInstance(ctx: Context): DBHelper {
             if (instance == null) {
-                instance = DBHelper(ctx.getApplicationContext())
+                instance = DBHelper(ctx.applicationContext)
             }
             return instance!!
         }
@@ -33,4 +33,4 @@ class DBHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, DBContract.DB_NAME, 
 
 // Access property for Context
 val Context.database: DBHelper
-    get() = DBHelper.getInstance(getApplicationContext())
+    get() = DBHelper.getInstance(applicationContext)
