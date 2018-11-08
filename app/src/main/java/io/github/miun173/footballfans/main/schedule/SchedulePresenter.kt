@@ -9,8 +9,7 @@ import org.jetbrains.anko.uiThread
 import java.util.*
 
 class SchedulePresenter(private val schedulerView: ScheduleContract.SchedulerView,
-                        private val fetch: Fetch,
-                        private val gson: Gson)
+                        private val fetch: Fetch)
     : ScheduleContract.Presenter {
 
     private fun convertDate(date: String): Calendar {
@@ -25,12 +24,12 @@ class SchedulePresenter(private val schedulerView: ScheduleContract.SchedulerVie
 
         var res: Events
         doAsync {
-            res = gson.fromJson(
+            res = Gson().fromJson(
                     fetch.doReq(TheSportDbRoute.getLast15Events(id)),
                     Events::class.java)
 
             if(isNext) {
-                res = gson.fromJson(
+                res = Gson().fromJson(
                         fetch.doReq(TheSportDbRoute.getNext15Events(id)),
                         Events::class.java)
             }

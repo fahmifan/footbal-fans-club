@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.detail.DetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
@@ -31,7 +30,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_schedule, parent, false)
 
-        presenter = SchedulePresenter(this, FetchImpl(), Gson())
+        presenter = SchedulePresenter(this, FetchImpl())
         rvManager = LinearLayoutManager(context)
 
         rvAdapterMain = EventsRVAdapter(events) {
