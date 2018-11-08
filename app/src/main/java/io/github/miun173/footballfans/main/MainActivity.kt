@@ -1,7 +1,7 @@
 package io.github.miun173.footballfans.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.main.favmatch.FavmatchFragment
 import io.github.miun173.footballfans.main.schedule.ScheduleFragment
