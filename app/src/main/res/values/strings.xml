@@ -14,6 +14,13 @@
     </string-array>
 
     <string name="score">%1$s vs %2$s</string>
+    <string name="text_goal">Goal</string>
+    <string name="text_shots">Shots</string>
+    <string name="text_lineups">Lineups</string>
+    <string name="text_goalkeeper">Goalkeeper</string>
+    <string name="text_defense">Defense</string>
+    <string name="text_midfielder">Midfielder</string>
+    <string name="text_forward">Forward</string>
 
     <array name="club_image">
         <item>@drawable/img_barca</item>

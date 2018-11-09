@@ -110,7 +110,7 @@
                 android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Goal"/>
+                android:text="@string/text_goal"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -145,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Shots"/>
+                android:text="@string/text_shots"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -173,7 +173,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lineups"
+                android:text="@string/text_lineups"
                 android:layout_margin="10dp"
                 android:layout_gravity="center_horizontal"
                 />
@@ -184,7 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Goalkeeper"/>
+                android:text="@string/text_goalkeeper"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -216,7 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Defense"/>
+                android:text="@string/text_defense"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -250,7 +250,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Midfielder"/>
+                android:text="@string/text_midfielder"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -283,7 +283,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Forward"/>
+                android:text="@string/text_forward"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
