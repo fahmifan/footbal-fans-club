@@ -46,7 +46,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean = when(item?.itemId) {
-        R.id.match_fav_menu -> {
+        R.id.menu_add_fav -> {
             presenter.setFaved(event)
             true
         }
