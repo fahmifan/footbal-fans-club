@@ -18,7 +18,7 @@ import io.github.miun173.footballfans.repository.remote.FetchImpl
 import kotlinx.android.synthetic.main.fragment_favmatch.*
 
 class FavmatchFragment: Fragment(), FavmatchContract.View {
-    lateinit var presenter: FavmatchContract.Presenter
+    private lateinit var presenter: FavmatchContract.Presenter
     private lateinit var rvEventAdapter: EventsRVAdapter
     private lateinit var rv: RecyclerView
     private lateinit var rvManager: RecyclerView.LayoutManager
@@ -53,10 +53,10 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
 
     }
 
-    override fun setFavmatch(events: List<Event?>) {
+    override fun setFavmatch(event: List<Event?>) {
         // set list
         this.events.clear()
-        this.events.addAll(events as MutableList<Event>)
+        this.events.addAll(event as MutableList<Event>)
         rvEventAdapter.notifyDataSetChanged()
     }
 

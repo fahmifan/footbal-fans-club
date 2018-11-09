@@ -17,9 +17,9 @@ import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity(), DetailContract.View {
 
-    lateinit var event: Event
-    lateinit var presenter: DetailPresenter
-    var eventID: Int = 0
+    private lateinit var event: Event
+    private lateinit var presenter: DetailPresenter
+    private var eventID: Int = 0
     private var menuItem: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

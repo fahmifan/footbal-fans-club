@@ -8,9 +8,9 @@ import io.github.miun173.footballfans.repository.remote.TheSportDbRoute
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class FavmatchPresenter(val view: FavmatchContract.View,
-                        val fetch: Fetch,
-                        val db: DBManager): FavmatchContract.Presenter {
+class FavmatchPresenter(private val view: FavmatchContract.View,
+                        private val fetch: Fetch,
+                        private val db: DBManager): FavmatchContract.Presenter {
     override fun getFavmatch() {
         view.showLoading(true)
 

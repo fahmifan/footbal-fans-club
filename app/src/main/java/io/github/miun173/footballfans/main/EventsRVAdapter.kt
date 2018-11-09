@@ -9,7 +9,8 @@ import io.github.miun173.footballfans.model.Event
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_event.*
 
-class EventsRVAdapter(private val teams: MutableList<Event>, private val listener: (Event) -> Unit)
+class EventsRVAdapter(private val teams: MutableList<Event>,
+                      private val listener: (Event) -> Unit)
     : RecyclerView.Adapter<EventsRVAdapter.ViewHolder>() {
 
     lateinit var parent: ViewGroup

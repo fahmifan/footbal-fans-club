@@ -20,12 +20,14 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
     private lateinit var rvAdapterMain: EventsRVAdapter
     private lateinit var rvManager: RecyclerView.LayoutManager
 
-    lateinit var presenter: SchedulePresenter
+    private lateinit var presenter: SchedulePresenter
 
-    val EVENT_ID = "4328"
+    private val EVENT_ID = "4328"
+
+    private val events: MutableList<Event> = mutableListOf()
+
+    // WARNING: this will modified from outer class
     var isNext = false
-
-    val events: MutableList<Event> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_schedule, parent, false)
