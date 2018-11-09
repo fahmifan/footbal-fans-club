@@ -1,8 +1,8 @@
 package io.github.miun173.footballfans.detail
 
-import android.os.Bundle
 //import android.support.v4.content.ContextCompat
 //import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,7 +12,6 @@ import com.squareup.picasso.Picasso
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBManagerImpl
-import io.github.miun173.footballfans.repository.remote.FetchImpl
 import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -32,7 +31,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         event = intent.getParcelableExtra("event")
         eventID = event.idEvent?.toInt() ?: -1
 
-        presenter = DetailPresenter(this, FetchImpl(), MatchRepoImpl() ,DBManagerImpl(applicationContext))
+        presenter = DetailPresenter(this, MatchRepoImpl() ,DBManagerImpl(applicationContext))
 
         presenter.getEventDetail(eventID)
         presenter.getTeam(event.strHomeTeam, event.strAwayTeam)

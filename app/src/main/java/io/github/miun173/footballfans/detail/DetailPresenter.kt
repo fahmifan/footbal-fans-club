@@ -2,13 +2,11 @@ package io.github.miun173.footballfans.detail
 
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBManager
-import io.github.miun173.footballfans.repository.remote.Fetch
 import io.github.miun173.footballfans.repository.remote.MatchRepo
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 class DetailPresenter(private val view: DetailContract.View,
-                      private val fetch: Fetch,
                       private val match: MatchRepo,
                       private val db: DBManager)
     : DetailContract.Presenter {

@@ -5,10 +5,8 @@ import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.model.Events
 import io.github.miun173.footballfans.model.Team
 import io.github.miun173.footballfans.model.Teams
+import io.github.miun173.footballfans.utils.DateTime
 import java.net.URL
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MatchRepoImpl: MatchRepo {
     override fun getTeam(name: String): List<Team> {
@@ -27,11 +25,7 @@ class MatchRepoImpl: MatchRepo {
         println("events: >>> ${detail.events}")
 
         detail.events?.map {
-            val date = it.dateEvent?.let { it1 -> convertDate(it1) }
-            it.dateEvent = "${date?.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())}, " +
-                    "${date?.get(Calendar.DATE)} " +
-                    "${date?.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())} " +
-                    "${date?.get(java.util.Calendar.YEAR)}"
+            it.dateEvent = it.dateEvent?.let { it1 -> DateTime.getShortDate(it1) }
         }
 
         return detail.events ?: emptyList()
@@ -43,11 +37,7 @@ class MatchRepoImpl: MatchRepo {
                 Events::class.java)
 
         res.events?.map {
-            val date = it.dateEvent?.let { it1 -> convertDate(it1) }
-            it.dateEvent = "${date?.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())}, " +
-                    "${date?.get(Calendar.DATE)} " +
-                    "${date?.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())} " +
-                    "${date?.get(java.util.Calendar.YEAR)}"
+            it.dateEvent = it.dateEvent?.let { it1 -> DateTime.getShortDate(it1) }
         }
 
         return res.events ?: emptyList()
@@ -59,42 +49,9 @@ class MatchRepoImpl: MatchRepo {
                 Events::class.java)
 
         res.events?.map {
-            val date = it.dateEvent?.let { it1 -> convertDate(it1) }
-            it.dateEvent = "${date?.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())}, " +
-                    "${date?.get(Calendar.DATE)} " +
-                    "${date?.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())} " +
-                    "${date?.get(java.util.Calendar.YEAR)}"
+            it.dateEvent = it.dateEvent?.let { it1 -> DateTime.getShortDate(it1) }
         }
 
         return res.events ?: emptyList()
     }
-
-    private fun convertDate(date: String): Calendar {
-        val dateChar = date.split("-")
-        val newDate = GregorianCalendar()
-        newDate.set(dateChar[0].toInt(), dateChar[1].toInt(), dateChar[2].toInt())
-        return newDate
-    }
-
-
-    private fun formatDate(date: String, format: String): String {
-        var result = ""
-        val old = SimpleDateFormat("yyyy-MM-dd")
-
-        try {
-            val oldDate = old.parse(date)
-            val newFormat = SimpleDateFormat(format)
-
-            result = newFormat.format(oldDate)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-
-        return result
-    }
-
-    fun getShortDate(date: String): String {
-        return formatDate(date, "dd MMMM yyyy")
-    }
-
 }
