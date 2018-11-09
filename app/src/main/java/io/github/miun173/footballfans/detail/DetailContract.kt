@@ -11,6 +11,7 @@ interface DetailContract {
         fun showUnsetFavFailed()
         fun showUnsetSuccess()
         fun showSetFavSuccess()
+        fun showEmptyEvent(show: Boolean)
     }
 
     interface Presenter {

@@ -4,8 +4,6 @@ import com.google.gson.Gson
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.model.Events
 import io.github.miun173.footballfans.repository.remote.Fetch
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -204,17 +202,13 @@ class SchedulePresenterTest {
 
     @Test
     fun showevents_when_getEvents_notempty() {
-        doAsync {
-            `when`(Gson().fromJson(jsonEvent,
-                    Events::class.java
-            )).thenReturn(EVENTS)
+        `when`(Gson().fromJson(jsonEvent,
+                Events::class.java
+        )).thenReturn(EVENTS)
 
-            uiThread {
-                presenter.getEvents(Mockito.anyString(), true)
+        presenter.getEvents(Mockito.anyString(), true)
 
-                verify(view).showLoading(true)
-                verify(view).showEvents(MANY_EVENT)
-            }
-        }
+        verify(view).showLoading(true)
+        verify(view).showEvents(MANY_EVENT)
     }
 }

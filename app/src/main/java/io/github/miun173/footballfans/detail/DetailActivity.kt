@@ -13,10 +13,10 @@ import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBManagerImpl
 import io.github.miun173.footballfans.repository.remote.FetchImpl
+import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity(), DetailContract.View {
-
     private lateinit var event: Event
     private lateinit var presenter: DetailPresenter
     private var eventID: Int = 0
@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         event = intent.getParcelableExtra("event")
         eventID = event.idEvent?.toInt() ?: -1
 
-        presenter = DetailPresenter(this, FetchImpl(), DBManagerImpl(applicationContext))
+        presenter = DetailPresenter(this, FetchImpl(), MatchRepoImpl() ,DBManagerImpl(applicationContext))
 
         presenter.getEventDetail(eventID)
         presenter.getTeam(event.strHomeTeam, event.strAwayTeam)
@@ -77,6 +77,10 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
 
     override fun showUnsetSuccess() {
         Toast.makeText(applicationContext, "Match removed from favorite", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showEmptyEvent(show: Boolean) {
+        Toast.makeText(applicationContext, "No match", Toast.LENGTH_SHORT).show()
     }
 
     override fun showUnsetFavFailed() {
