@@ -51,6 +51,11 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
             adapter = rvEventAdapter
         }
 
+
+        favmatch_layout_swiped.setOnRefreshListener {
+            favmatch_layout_swiped.isRefreshing = true
+            presenter.getFavmatch()
+        }
     }
 
     override fun setFavmatch(event: List<Event?>) {
@@ -58,6 +63,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
         this.events.clear()
         this.events.addAll(event as MutableList<Event>)
         rvEventAdapter.notifyDataSetChanged()
+        favmatch_layout_swiped.isRefreshing = false
     }
 
     override fun showLoading(show: Boolean) {
