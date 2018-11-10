@@ -3,19 +3,22 @@
 
 ## Unit testing
 ### FavmatchPresenterTest.kt
-- It should show favmatch when getFavmatch notempty
-  - get favs match from DB and return many favs
-  - then get `Events` from network (mocked using json string)
-  - then it check if `showLoading` and `setFavmatch` are called 
+1. Test 01
+- get favs match from DB and return many favs
+- then get `Events` from network (mocked using json string)
+- then it check if `showLoading` and `setFavmatch` are called
 
-- It should show no favmatch when getFavs is empty
-  - get favs from DB and return no favs
-  - then it check if `showLoading` and `showNoFavs` are called
+2. Test 02
+- get favs from DB and return no favs
+- then it check if `showLoading` and `showNoFavs` are called
   
 ### SchedulePresenter.kt
 - It should show events when getEvents notempty
   - get `Events` from network (mocked using json string) and return non-empty `Events`
   - then it check if `showLoading` and `showEvents` are called
+
+## DateTime.kt
+- It assert if the date string passed in is return in formated style
 
 ## Instrumentation testing
 ### MainActivityTest.kt

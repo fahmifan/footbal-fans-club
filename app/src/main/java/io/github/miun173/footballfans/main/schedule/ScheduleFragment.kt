@@ -13,26 +13,22 @@ import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.detail.DetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.repository.remote.FetchImpl
+import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
 import kotlinx.android.synthetic.main.fragment_schedule.*
 
 class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
     private lateinit var rvAdapterMain: EventsRVAdapter
     private lateinit var rvManager: RecyclerView.LayoutManager
-
     private lateinit var presenter: SchedulePresenter
-
     private val EVENT_ID = "4328"
-
     private val events: MutableList<Event> = mutableListOf()
-
-    // WARNING: this will modified from outer class
+    // this will be modified from outer class
     var isNext = false
 
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_schedule, parent, false)
 
-        presenter = SchedulePresenter(this, FetchImpl())
+        presenter = SchedulePresenter(this, MatchRepoImpl())
         rvManager = LinearLayoutManager(context)
 
         rvAdapterMain = EventsRVAdapter(events) {
@@ -59,12 +55,6 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
     override fun showEvents(events: List<Event>) {
         this.events.clear()
         this.events.addAll(events)
-
-//        events_list.apply {
-//            layoutManager = rvManager
-//            adapter = rvAdapterMain
-//        }
-
         rvAdapterMain.notifyDataSetChanged()
     }
 
