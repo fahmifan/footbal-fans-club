@@ -64,7 +64,7 @@ class DetailPresenter(private val view: DetailContract.View,
             println("detail >>> $detail")
 
             uiThread {
-                view.setEventDetail(detail[0])
+                view.setEventDetail(detail)
                 view.showFav(showFav)
             }
         }

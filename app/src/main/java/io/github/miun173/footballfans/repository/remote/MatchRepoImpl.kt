@@ -17,7 +17,7 @@ class MatchRepoImpl: MatchRepo {
         return res.teams ?: emptyList()
     }
 
-    override fun getEventDetail(id: Int): List<Event> {
+    override fun getEventDetail(id: Int): Event {
         val detail = Gson().fromJson(
                 URL(TheSportDbRoute.getEventDetail(id)).readText(),
                 Events::class.java)
@@ -28,7 +28,7 @@ class MatchRepoImpl: MatchRepo {
             it.dateEvent = it.dateEvent?.let { it1 -> DateTime.getShortDate(it1) }
         }
 
-        return detail.events ?: emptyList()
+        return detail?.events?.get(0) ?: Event()
     }
 
     override fun getLast15Events(id: Int): List<Event> {

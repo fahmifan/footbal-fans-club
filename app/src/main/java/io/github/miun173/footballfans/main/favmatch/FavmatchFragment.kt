@@ -14,7 +14,7 @@ import io.github.miun173.footballfans.detail.DetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBManagerImpl
-import io.github.miun173.footballfans.repository.remote.FetchImpl
+import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
 import kotlinx.android.synthetic.main.fragment_favmatch.*
 
 class FavmatchFragment: Fragment(), FavmatchContract.View {
@@ -29,7 +29,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
         val view = inflater.inflate(R.layout.fragment_favmatch, parent, false)
 
         // if there is no context there is no way to access the DB, so just NPE it
-        presenter = FavmatchPresenter(this, FetchImpl(), DBManagerImpl(context!!))
+        presenter = FavmatchPresenter(this, MatchRepoImpl(), DBManagerImpl(context!!))
         presenter.getFavmatch()
 
         rvManager = LinearLayoutManager(context)
@@ -61,7 +61,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
     override fun setFavmatch(event: List<Event?>) {
         // set list
         this.events.clear()
-        this.events.addAll(event as MutableList<Event>)
+        this.events.addAll(event as List<Event>)
         rvEventAdapter.notifyDataSetChanged()
         favmatch_layout_swiped.isRefreshing = false
     }
