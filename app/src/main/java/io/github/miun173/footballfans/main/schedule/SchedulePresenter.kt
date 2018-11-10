@@ -5,17 +5,17 @@ import io.github.miun173.footballfans.utils.DateTime
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class SchedulePresenter(private val schedulerView: ScheduleContract.SchedulerView,
+class SchedulePresenter(private val view: ScheduleContract.SchedulerView,
                         private val matchRepo: MatchRepo)
     : ScheduleContract.Presenter {
 
-    override fun getEvents(id: String?, isNext: Boolean) {
-        schedulerView.showLoading(true)
+    override fun getEvents(id: Int, isNext: Boolean) {
+        view.showLoading(true)
 
         doAsync {
             val res = when(isNext) {
-                true -> id?.toInt()?.let { matchRepo.getNext15Events(it) } ?: emptyList()
-                false -> id?.toInt()?.let { matchRepo.getLast15Events(it) } ?: emptyList()
+                true -> matchRepo.getNext15Events(id)
+                false -> matchRepo.getLast15Events(id)
             }
 
             res.map {
@@ -23,10 +23,10 @@ class SchedulePresenter(private val schedulerView: ScheduleContract.SchedulerVie
             }
 
             uiThread {
-                schedulerView.showLoading(false)
+                view.showLoading(false)
                 println("events:" + res.toString())
 
-                schedulerView.showEvents(res)
+                view.showEvents(res)
             }
         }
     }

@@ -9,6 +9,6 @@ interface ScheduleContract {
     }
 
     interface Presenter {
-        fun getEvents(id: String?, isNext: Boolean)
+        fun getEvents(id: Int, isNext: Boolean)
     }
 }

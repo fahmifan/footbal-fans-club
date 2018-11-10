@@ -38,7 +38,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView {
             startActivity(intent)
         }
 
-        presenter.getEvents(EVENT_ID, isNext)
+        presenter.getEvents(EVENT_ID.toInt(), isNext)
 
         return view
     }
