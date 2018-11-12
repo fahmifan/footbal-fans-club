@@ -21,6 +21,8 @@
     <string name="text_defense">Defense</string>
     <string name="text_midfielder">Midfielder</string>
     <string name="text_forward">Forward</string>
+    <string name="match_past">Past Match</string>
+    <string name="match_next">Next match</string>
 
     <array name="club_image">
         <item>@drawable/img_barca</item>
