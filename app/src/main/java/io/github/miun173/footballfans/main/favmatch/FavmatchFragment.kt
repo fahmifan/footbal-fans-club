@@ -2,10 +2,9 @@ package io.github.miun173.footballfans.main.favmatch
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,8 +21,14 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
     private lateinit var rvEventAdapter: EventsRVAdapter
     private lateinit var rv: RecyclerView
     private lateinit var rvManager: RecyclerView.LayoutManager
+    private lateinit var searchView: SearchView
 
-    val events: MutableList<Event> = mutableListOf()
+    private val events: MutableList<Event> = mutableListOf()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_favmatch, parent, false)
@@ -56,6 +61,25 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
             favmatch_layout_swiped.isRefreshing = true
             presenter.getFavmatch()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.appbar_menu, menu)
+
+        val searchItem = menu?.findItem(R.id.action_search)
+        searchView = searchItem?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(context, query, Toast.LENGTH_SHORT).show()
+                // do search
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
     }
 
     override fun setFavmatch(event: List<Event?>) {

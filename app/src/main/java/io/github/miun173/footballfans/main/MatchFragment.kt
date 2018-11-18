@@ -1,9 +1,9 @@
 package io.github.miun173.footballfans.main
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -12,13 +12,43 @@ import io.github.miun173.footballfans.main.schedule.ScheduleFragment
 import kotlinx.android.synthetic.main.fragment_match.*
 
 class MatchFragment: Fragment() {
+    lateinit var searchView: SearchView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_match, container, false)
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_match, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         match_pager.adapter = MatchFragmentAdapter(childFragmentManager)
         tablayout_match.setupWithViewPager(match_pager)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.appbar_menu, menu)
+
+        val searchItem = menu?.findItem(R.id.action_search)
+        searchView = searchItem?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // show search result in new activity
+                val intent = Intent(context, SearchResultctivity::class.java)
+                intent.putExtra("query", query)
+                startActivity(intent)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+
     }
 
     private inner class MatchFragmentAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {

@@ -23,6 +23,7 @@
     <string name="text_forward">Forward</string>
     <string name="match_past">Past Match</string>
     <string name="match_next">Next match</string>
+    <string name="search">Search</string>
 
     <array name="club_image">
         <item>@drawable/img_barca</item>

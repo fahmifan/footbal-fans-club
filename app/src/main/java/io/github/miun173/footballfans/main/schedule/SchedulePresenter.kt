@@ -18,9 +18,9 @@ class SchedulePresenter(private val view: ScheduleContract.SchedulerView,
                 false -> matchRepo.getLast15Events(id)
             }
 
-            res.map {
-                it.dateEvent = it.dateEvent?.let { it1 -> DateTime.getShortDate(it1) }
-            }
+//            res.map {
+//                it.dateEvent = it.dateEvent?.let { it1 -> DateTime.getShortDate(it1) }
+//            }
 
             uiThread {
                 view.showLoading(false)

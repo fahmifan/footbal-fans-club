@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, MatchFragment())
                 .commit()
-
+        
         bottom_nav.setOnNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.nav_nextmatch -> {
@@ -39,12 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         bottom_nav.setOnNavigationItemReselectedListener {
             when(it.itemId) {
-                R.id.nav_nextmatch -> {
-                }
-
+                R.id.nav_nextmatch -> {}
                 R.id.nav_favmatch -> {}
-
-//                R.id.nav_pastmatch -> {}
             }
         }
     }
