@@ -9,14 +9,14 @@
     tools:ignore="UseCompoundDrawables">
 
     <ImageView
-        android:id="@+id/imv_club"
+        android:id="@+id/imv_pict"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:padding="8dp"
         android:contentDescription="@string/club_logo" />
 
     <TextView
-        android:id="@+id/tv_clubname"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp" />

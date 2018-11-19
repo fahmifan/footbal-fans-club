@@ -6,12 +6,20 @@ import io.github.miun173.footballfans.utils.DateTime
 import java.net.URL
 
 class MatchRepoImpl: MatchRepo {
+
+    override fun getPlayers(teamName: String): List<Player> {
+        val res = Gson().fromJson(
+                URL(TheSportDbRoute.getTeamPlayers(teamName)).readText(),
+                Players::class.java
+        )
+
+        return res.players ?: emptyList()
+    }
+
     override fun getTeamsLeague(id: Int): List<Team> {
         val res = Gson().fromJson(
                 URL(TheSportDbRoute.getTeamsLeague(id)).readText(),
                 Teams::class.java)
-
-        println("teams >>> ${res.teams}")
 
         return res.teams ?: emptyList()
     }
@@ -21,8 +29,6 @@ class MatchRepoImpl: MatchRepo {
                 URL(TheSportDbRoute.getAllLeague()).readText(),
                 Leagues::class.java)
 
-        println("leagues >>> ${res.leagues}")
-
         return res.leagues ?: emptyList()
     }
 
@@ -30,8 +36,6 @@ class MatchRepoImpl: MatchRepo {
         val res = Gson().fromJson(
                 URL(TheSportDbRoute.searchEvent(eventName)).readText(),
                 SearchEvent::class.java)
-
-        println("searchedEvent >>> ${res.events}")
 
         return res.events ?: emptyList()
     }
@@ -48,8 +52,6 @@ class MatchRepoImpl: MatchRepo {
         val detail = Gson().fromJson(
                 URL(TheSportDbRoute.getEventDetail(id)).readText(),
                 Events::class.java)
-
-        println("events: >>> ${detail.events}")
 
         detail.events?.map {
             it.dateEvent = it.dateEvent?.let { it1 -> DateTime.getShortDate(it1) }

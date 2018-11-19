@@ -10,7 +10,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        tools:src="@drawable/img_barca"/>
+        tools:src="@drawable/img_barca"
+        android:contentDescription="@string/team_logo" />
 
     <ScrollView
         android:layout_width="match_parent"

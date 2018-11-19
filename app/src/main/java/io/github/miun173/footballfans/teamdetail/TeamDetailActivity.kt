@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Team
+import io.github.miun173.footballfans.teamdetail.player.PlayerFragment
 import kotlinx.android.synthetic.main.activity_team_detail.*
 
 class TeamDetailActivity : AppCompatActivity() {
@@ -27,16 +28,25 @@ class TeamDetailActivity : AppCompatActivity() {
 
     inner class TeamFragmentAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
+            val args = Bundle()
+            args.putParcelable(getString(R.string.intent_team), team)
+
             return when(position) {
                 0 -> {
                     val teamOverview = TeamOverview()
-                    val args = Bundle()
-                    args.putParcelable(getString(R.string.intent_team), team)
                     teamOverview.arguments = args
 
                     teamOverview
                 }
-                else -> TeamPlayer()
+                1 -> {
+                    val playerFrag = PlayerFragment()
+                    playerFrag.arguments = args
+
+                    playerFrag
+                }
+                else -> {
+                    PlayerFragment()
+                }
             }
         }
 

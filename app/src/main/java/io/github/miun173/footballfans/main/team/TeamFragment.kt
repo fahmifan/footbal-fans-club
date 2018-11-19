@@ -55,7 +55,7 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        team_list.apply {team_list
+        team_list.apply {
             layoutManager = rvManager
             adapter = rvAdapter
         }
@@ -90,13 +90,12 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
     override fun setListTeam(teams: List<Team>) {
         this.teams.clear()
         this.teams.addAll(teams)
-
-        println("team fragment >> $teams")
-
         rvAdapter.notifyDataSetChanged()
     }
 
     override fun setTeamEmpty(show: Boolean) {
-        Toast.makeText(context, "Team not found", Toast.LENGTH_SHORT).show()
+        if(show) {
+            Toast.makeText(context, "Team not found", Toast.LENGTH_SHORT).show()
+        }
     }
 }

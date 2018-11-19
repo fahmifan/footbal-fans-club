@@ -1,4 +1,4 @@
-package io.github.miun173.footballfans.main.team
+package io.github.miun173.footballfans.teamdetail
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import io.github.miun173.footballfans.R
-import io.github.miun173.footballfans.model.Team
+import io.github.miun173.footballfans.model.Player
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_team.*
 
-class TeamRVAdapter(val teams: MutableList<Team>,
-                    private val listener: (Team) -> Unit)
-    : RecyclerView.Adapter<TeamRVAdapter.ViewHolder>() {
+class PlayerRVAdapter(private val players: MutableList<Player>,
+                      private val listener: (Player) -> Unit)
+: RecyclerView.Adapter<PlayerRVAdapter.ViewHolder>() {
 
     lateinit var parent: ViewGroup
 
@@ -23,26 +23,25 @@ class TeamRVAdapter(val teams: MutableList<Team>,
                 .inflate(R.layout.item_team, parent, false))
     }
 
-    override fun getItemCount(): Int = teams.size
+    override fun getItemCount(): Int = players.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(teams[position], listener)
-
+        holder.bind(players[position], listener)
     }
 
     inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
             LayoutContainer {
-        fun bind(team: Team, listener: (Team) -> Unit) {
+        fun bind(player: Player, listener: (Player) -> Unit) {
+            tv_name.text = player.strPlayer
 
-            Picasso.get().load(team.teamBadge)
+            Picasso.get()
+                    .load(player.strCutout ?: player.strThumb)
                     .placeholder(R.drawable.img_load)
                     .error(R.drawable.img_error)
                     .into(imv_pict)
 
-            tv_name.text = team.teamName
-
             containerView.setOnClickListener {
-                listener(team)
+                listener(player)
             }
         }
     }
