@@ -9,7 +9,7 @@ import io.github.miun173.footballfans.model.Event
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_event.*
 
-class EventsRVAdapter(private val teams: MutableList<Event>,
+class EventsRVAdapter(private val events: MutableList<Event>,
                       private val listener: (Event) -> Unit)
     : RecyclerView.Adapter<EventsRVAdapter.ViewHolder>() {
 
@@ -22,10 +22,10 @@ class EventsRVAdapter(private val teams: MutableList<Event>,
                 .inflate(R.layout.item_event,parent, false))
     }
 
-    override fun getItemCount(): Int = teams.size
+    override fun getItemCount(): Int = events.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(teams[position], listener)
+        holder.bind(events[position], listener)
     }
 
     inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),

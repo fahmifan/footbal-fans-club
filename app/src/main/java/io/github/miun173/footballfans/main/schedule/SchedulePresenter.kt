@@ -1,7 +1,6 @@
 package io.github.miun173.footballfans.main.schedule
 
 import io.github.miun173.footballfans.repository.remote.MatchRepo
-import io.github.miun173.footballfans.utils.DateTime
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 

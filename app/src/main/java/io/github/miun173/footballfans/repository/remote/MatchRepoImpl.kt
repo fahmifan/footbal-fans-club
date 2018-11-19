@@ -6,6 +6,16 @@ import io.github.miun173.footballfans.utils.DateTime
 import java.net.URL
 
 class MatchRepoImpl: MatchRepo {
+    override fun getTeamsLeague(id: Int): List<Team> {
+        val res = Gson().fromJson(
+                URL(TheSportDbRoute.getTeamsLeague(id)).readText(),
+                Teams::class.java)
+
+        println("teams >>> ${res.teams}")
+
+        return res.teams ?: emptyList()
+    }
+
     override fun getLeagues(): List<League> {
         val res = Gson().fromJson(
                 URL(TheSportDbRoute.getAllLeague()).readText(),

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--<item-->
-        <!--android:id="@+id/nav_pastmatch"-->
-        <!--android:icon="@drawable/ic_baseline_whatshot_24px"-->
-        <!--android:title="Prev Match"-->
-        <!--app:showAsAction="ifRoom"/>-->
 
     <item
         android:id="@+id/nav_nextmatch"
         android:icon="@drawable/ic_baseline_calendar_today_24px"
         android:title="@string/match"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_team"
+        android:title="@string/team"
+        android:icon="@drawable/ic_group_white_24dp"
+        app:showAsAction="ifRoom"
+        />
 
     <item
         android:id="@+id/nav_favmatch"

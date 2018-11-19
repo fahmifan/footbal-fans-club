@@ -28,6 +28,8 @@
     <string name="intent_event_id">event_id</string>
     <string name="match">Match</string>
     <string name="favorite">Favorite</string>
+    <string name="club_logo">club logo</string>
+    <string name="team">Team</string>
 
     <array name="club_image">
         <item>@drawable/img_barca</item>

@@ -12,6 +12,6 @@ interface ScheduleContract {
 
     interface Presenter {
         fun getEvents(id: Int, isNext: Boolean)
-        fun getLeagues();
+        fun getLeagues()
     }
 }
