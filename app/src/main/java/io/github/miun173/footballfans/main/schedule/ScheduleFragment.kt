@@ -64,7 +64,6 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-        Toast.makeText(context, "Selected: $pos", Toast.LENGTH_SHORT).show()
         presenter.getEvents(leagues[pos].idLeague ?: 0, isNext)
     }
 

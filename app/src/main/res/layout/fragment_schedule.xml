@@ -8,6 +8,7 @@
     tools:context=".main.MainActivity">
 
     <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_marginTop="8dp"
         android:id="@+id/match_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -18,11 +18,8 @@ import io.github.miun173.footballfans.model.League
 import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
 import kotlinx.android.synthetic.main.fragment_match.*
 
-class MatchFragment: Fragment(), MatchContract.View, AdapterView.OnItemSelectedListener {
+class MatchFragment: Fragment() {
     lateinit var searchView: SearchView
-    private val leagues: MutableList<League> = mutableListOf()
-    lateinit var presenter: MatchContract.Presenter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -30,8 +27,6 @@ class MatchFragment: Fragment(), MatchContract.View, AdapterView.OnItemSelectedL
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        presenter = MatchPresenter(this, MatchRepoImpl())
-//        presenter.getSpinner()
         return inflater.inflate(R.layout.fragment_match, container, false)
     }
 
@@ -59,34 +54,6 @@ class MatchFragment: Fragment(), MatchContract.View, AdapterView.OnItemSelectedL
             }
 
         })
-
-    }
-
-    override fun setSpinner(leagues: List<League>) {
-        this.leagues.clear()
-        this.leagues.addAll(leagues)
-
-        val aa = ArrayAdapter<League>(context, android.R.layout.simple_spinner_item, this.leagues)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        match_spinner.apply {
-            adapter = aa
-            setSelection(0, false)
-            onItemSelectedListener = this@MatchFragment
-            prompt = "Select A League"
-            gravity = Gravity.CENTER
-        }
-
-        val NEW_SPINNER_ID = 1
-        Spinner(context).id = NEW_SPINNER_ID
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-        // repopulate recyclerview
 
     }
 
