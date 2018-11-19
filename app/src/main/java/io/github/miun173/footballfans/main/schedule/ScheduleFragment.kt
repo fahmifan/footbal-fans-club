@@ -27,13 +27,15 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
     private lateinit var presenter: SchedulePresenter
     private val EVENT_ID = "4328"
     private val events: MutableList<Event> = mutableListOf()
+    lateinit var arrayAdapter: ArrayAdapter<League>
+    private val leagues: MutableList<League> = mutableListOf()
+
     // this will be modified from outer class
     var isNext = false
 
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_schedule, parent, false)
 
-        presenter = SchedulePresenter(this, MatchRepoImpl())
         rvManager = LinearLayoutManager(context)
 
         rvAdapterMain = EventsRVAdapter(events) {
@@ -43,29 +45,27 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
             startActivity(intent)
         }
 
+        arrayAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, leagues)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        presenter = SchedulePresenter(this, MatchRepoImpl())
         presenter.getEvents(EVENT_ID.toInt(), isNext)
+        presenter.getLeagues()
 
         return view
     }
 
     override fun setSpinner(leagues: List<League>) {
-        val aa = ArrayAdapter(context, android.R.layout.simple_spinner_item, leagues)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        match_spinner.apply {
-            adapter = aa
-            setSelection(0, false)
-            onItemSelectedListener = this@ScheduleFragment
-            prompt = "Select A League"
-            gravity = Gravity.CENTER
-        }
-
+        this.leagues.clear()
+        this.leagues.addAll(leagues)
+        arrayAdapter.notifyDataSetChanged()
         val NEW_SPINNER_ID = 1
         Spinner(context).id = NEW_SPINNER_ID
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         Toast.makeText(context, "Selected: $pos", Toast.LENGTH_SHORT).show()
+        presenter.getEvents(leagues[pos].idLeague ?: 0, isNext)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
@@ -75,7 +75,13 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        match_spinner.onItemSelectedListener = this
+        match_spinner.apply {
+            adapter = arrayAdapter
+            setSelection(0, false)
+            onItemSelectedListener = this@ScheduleFragment
+            prompt = "Select A League"
+            gravity = Gravity.CENTER
+        }
 
         events_list.apply {
             layoutManager = rvManager

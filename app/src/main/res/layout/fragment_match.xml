@@ -17,6 +17,13 @@
         app:tabIndicatorColor="@color/colorAccent"
         android:layout_height="wrap_content" />
 
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/match_spinner"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/match_pager"
         android:layout_width="match_parent"

@@ -8,4 +8,6 @@ data class League(
 
         @SerializedName("strLeague")
         val strLeague: String? = ""
-)
+) {
+        override fun toString(): String = strLeague ?: ""
+}

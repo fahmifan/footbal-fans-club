@@ -26,6 +26,8 @@
     <string name="search">Search</string>
     <string name="intent_event">event</string>
     <string name="intent_event_id">event_id</string>
+    <string name="match">Match</string>
+    <string name="favorite">Favorite</string>
 
     <array name="club_image">
         <item>@drawable/img_barca</item>

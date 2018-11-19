@@ -10,13 +10,13 @@
     <item
         android:id="@+id/nav_nextmatch"
         android:icon="@drawable/ic_baseline_calendar_today_24px"
-        android:title="Next Match"
+        android:title="@string/match"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/nav_favmatch"
         android:icon="@drawable/ic_baseline_stars_24px"
-        android:title="Favorite"
+        android:title="@string/favorite"
         app:showAsAction="ifRoom" />
 
 </menu>

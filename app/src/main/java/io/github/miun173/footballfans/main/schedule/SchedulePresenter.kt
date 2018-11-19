@@ -18,17 +18,23 @@ class SchedulePresenter(private val view: ScheduleContract.SchedulerView,
                 false -> matchRepo.getLast15Events(id)
             }
 
-            val leagues = matchRepo.getLeagues()
+            println("res >>> $res")
 
             uiThread {
                 view.showLoading(false)
                 println("events:" + res.toString())
+                view.showEvents(res)
+            }
+        }
+    }
 
+    override fun getLeagues() {
+        doAsync {
+            val leagues = matchRepo.getLeagues()
+            uiThread {
                 if(!leagues.isEmpty()) {
                     view.setSpinner(leagues)
                 }
-
-                view.showEvents(res)
             }
         }
     }
