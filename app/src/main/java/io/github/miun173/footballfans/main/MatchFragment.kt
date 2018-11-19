@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.main.schedule.ScheduleFragment
+import io.github.miun173.footballfans.main.searchresult.SearchedMatchctivity
 import kotlinx.android.synthetic.main.fragment_match.*
 
 class MatchFragment: Fragment() {
@@ -37,7 +38,7 @@ class MatchFragment: Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // show search result in new activity
-                val intent = Intent(context, SearchResultctivity::class.java)
+                val intent = Intent(context, SearchedMatchctivity::class.java)
                 intent.putExtra("query", query)
                 startActivity(intent)
                 return true

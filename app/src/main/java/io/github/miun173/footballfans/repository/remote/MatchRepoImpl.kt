@@ -1,14 +1,31 @@
 package io.github.miun173.footballfans.repository.remote
 
 import com.google.gson.Gson
-import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.model.Events
-import io.github.miun173.footballfans.model.Team
-import io.github.miun173.footballfans.model.Teams
+import io.github.miun173.footballfans.model.*
 import io.github.miun173.footballfans.utils.DateTime
 import java.net.URL
 
 class MatchRepoImpl: MatchRepo {
+    override fun getLeagues(): List<League> {
+        val res = Gson().fromJson(
+                URL(TheSportDbRoute.getAllLeague()).readText(),
+                Leagues::class.java)
+
+        println("leagues >>> ${res.leagues}")
+
+        return res.leagues ?: emptyList()
+    }
+
+    override fun searchEvent(eventName: String): List<Event> {
+        val res = Gson().fromJson(
+                URL(TheSportDbRoute.searchEvent(eventName)).readText(),
+                SearchEvent::class.java)
+
+        println("searchedEvent >>> ${res.events}")
+
+        return res.events ?: emptyList()
+    }
+
     override fun getTeam(name: String): List<Team> {
         val res = Gson().fromJson(
                 URL(TheSportDbRoute.getTeam(name)).readText(),

@@ -25,4 +25,14 @@ object TheSportDbRoute {
     fun getNext15Events(id: String?): String {
         return BASE_ROUTE + "/eventsnextleague.php?id=" + Uri.encode(id)
     }
+
+    fun searchEvent(name: String): String {
+        val url = BASE_ROUTE + "/searchevents.php?e=" + Uri.encode(name)
+
+        println("url >>> $url")
+
+        return url
+    }
+
+    fun getAllLeague(): String = BASE_ROUTE + "/all_leagues.php"
 }

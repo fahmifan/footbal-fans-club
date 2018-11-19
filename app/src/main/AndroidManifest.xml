@@ -22,7 +22,7 @@
         <activity
             android:name=".detail.DetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".main.SearchResultctivity"></activity>
+        <activity android:name=".main.searchresult.SearchedMatchctivity"></activity>
     </application>
 
 </manifest>

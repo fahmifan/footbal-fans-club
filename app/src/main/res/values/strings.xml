@@ -24,6 +24,8 @@
     <string name="match_past">Past Match</string>
     <string name="match_next">Next match</string>
     <string name="search">Search</string>
+    <string name="intent_event">event</string>
+    <string name="intent_event_id">event_id</string>
 
     <array name="club_image">
         <item>@drawable/img_barca</item>
