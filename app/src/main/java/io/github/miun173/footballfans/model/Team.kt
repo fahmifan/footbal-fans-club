@@ -13,5 +13,8 @@ data class Team(
         var teamName: String? = "",
 
         @SerializedName("strTeamBadge")
-        var teamBadge: String? = ""
+        var teamBadge: String? = "",
+
+        @SerializedName("strDescriptionEN")
+        var strDescriptionEN: String? = ""
 ) : Parcelable

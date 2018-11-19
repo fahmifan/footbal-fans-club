@@ -1,5 +1,6 @@
 package io.github.miun173.footballfans.main.team
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.League
 import io.github.miun173.footballfans.model.Team
 import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
+import io.github.miun173.footballfans.teamdetail.TeamDetailActivity
 import kotlinx.android.synthetic.main.fragment_team.*
 
 class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedListener {
@@ -35,7 +37,9 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
         rvManager = LinearLayoutManager(context)
         rvAdapter = TeamRVAdapter(teams) {
             // go to teams detail
-            Toast.makeText(context, "Go to team detail", Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, TeamDetailActivity::class.java)
+            intent.putExtra(getString(R.string.intent_team), it)
+            startActivity(intent)
         }
 
         arrayAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, leagues)

@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.nav_nextmatch -> {}
                 R.id.nav_favmatch -> {}
+                R.id.nav_team -> {}
             }
         }
     }
