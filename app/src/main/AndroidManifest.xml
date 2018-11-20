@@ -23,9 +23,11 @@
             android:name=".matchdetail.MatchDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".main.searchresult.SearchedMatchctivity" />
-        <activity android:name=".teamdetail.TeamDetailActivity"
+        <activity
+            android:name=".teamdetail.TeamDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".PlayerDetailActivity" />
+        <activity android:name=".searchedteam.SearchedTeamActivity"></activity>
     </application>
 
 </manifest>

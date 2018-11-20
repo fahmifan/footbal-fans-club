@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_match.*
 
 class MatchFragment: Fragment() {
     lateinit var searchView: SearchView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -38,7 +39,7 @@ class MatchFragment: Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // show search result in new activity
                 val intent = Intent(context, SearchedMatchctivity::class.java)
-                intent.putExtra("query", query)
+                intent.putExtra(getString(R.string.query), query)
                 startActivity(intent)
                 return true
             }

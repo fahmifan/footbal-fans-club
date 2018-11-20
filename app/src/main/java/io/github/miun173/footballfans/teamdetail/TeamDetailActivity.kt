@@ -41,6 +41,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailContract.View {
         this.menuItem = menu
         menuInflater.inflate(R.menu.fav_menu, menu)
         presenter.getFaved(team.teamId?.toInt() ?: 0)
+
         return menu != null
     }
 

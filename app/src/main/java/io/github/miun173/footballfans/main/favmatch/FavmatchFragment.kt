@@ -20,7 +20,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
     private lateinit var rvEventAdapter: EventsRVAdapter
     private lateinit var rv: RecyclerView
     private lateinit var rvManager: RecyclerView.LayoutManager
-    private lateinit var searchView: SearchView
+//    private lateinit var searchView: SearchView
 
     private val events: MutableList<Event> = mutableListOf()
 
@@ -62,31 +62,33 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.appbar_menu, menu)
-
-        val searchItem = menu?.findItem(R.id.action_search)
-        searchView = searchItem?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                Toast.makeText(context, query, Toast.LENGTH_SHORT).show()
-                // do search
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return true
-            }
-
-        })
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+//        inflater?.inflate(R.menu.appbar_menu, menu)
+//
+//        val searchItem = menu?.findItem(R.id.action_search)
+//        searchView = searchItem?.actionView as SearchView
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                Toast.makeText(context, query, Toast.LENGTH_SHORT).show()
+//                // do search
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                return true
+//            }
+//
+//        })
+//    }
 
     override fun setFavmatch(event: List<Event?>) {
         // set list
         this.events.clear()
         this.events.addAll(event as List<Event>)
         rvEventAdapter.notifyDataSetChanged()
-        favmatch_layout_swiped.isRefreshing = false
+        favmatch_layout_swiped.let {
+            it.isRefreshing = false
+        }
     }
 
     override fun showLoading(show: Boolean) {

@@ -35,7 +35,7 @@ class SearchedMatchctivity : AppCompatActivity(), SearchedMatchContract.View {
             startActivity(intent)
         }
 
-        val query = intent.getStringExtra("query") ?: ""
+        val query = intent.getStringExtra(getString(R.string.query)) ?: ""
         presenter.search(query)
 
         searched_match_list.apply {

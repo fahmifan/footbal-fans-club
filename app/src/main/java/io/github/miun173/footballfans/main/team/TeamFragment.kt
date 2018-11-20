@@ -2,17 +2,17 @@ package io.github.miun173.footballfans.main.team
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
+import io.github.miun173.footballfans.searchedteam.SearchedTeamActivity
 import io.github.miun173.footballfans.model.League
 import io.github.miun173.footballfans.model.Team
 import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
@@ -29,6 +29,13 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
 
     private val teams: MutableList<Team> = mutableListOf()
     private val leagues: MutableList<League> = mutableListOf()
+
+    private lateinit var searchView: SearchView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_team, container, false)
@@ -69,6 +76,30 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
         (Spinner(context)).id = NEW_SPINNER_ID
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.appbar_menu, menu)
+
+        val searchItem = menu?.findItem(R.id.action_search)
+        searchView = searchItem?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Toast.makeText(context, query, Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(context, SearchedTeamActivity::class.java)
+                intent.putExtra(getString(R.string.query), query)
+                startActivity(intent)
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+    }
+
+
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
     }
@@ -84,7 +115,9 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
     }
 
     override fun showLoading(show: Boolean) {
-        Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+        if(show) {
+            // Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun setListTeam(teams: List<Team>) {
