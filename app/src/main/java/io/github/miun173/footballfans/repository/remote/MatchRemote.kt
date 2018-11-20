@@ -6,7 +6,8 @@ import io.github.miun173.footballfans.model.Player
 import io.github.miun173.footballfans.model.Team
 
 interface MatchRemote {
-    fun getTeam(name: String): List<Team>
+    fun getTeams(name: String): List<Team>
+    fun getTeamDetail(teamID: Int): Team?
     fun getTeamsLeague(id: Int): List<Team>
     fun getEventDetail(id: Int): Event
     fun getLast15Events(id: Int): List<Event>

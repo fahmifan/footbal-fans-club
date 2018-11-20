@@ -72,8 +72,8 @@ class MatchDetailPresenter(private val view: MatchDetailContract.View,
 
     override fun getTeam(homeName: String?, awayName: String?) {
         doAsync {
-            val homeTeam = homeName?.let { match.getTeam(it) }
-            val awayTeam = awayName?.let { match.getTeam(it) }
+            val homeTeam = homeName?.let { match.getTeams(it) }
+            val awayTeam = awayName?.let { match.getTeams(it) }
 
             uiThread {
                 if(homeTeam?.isEmpty() == true || awayTeam?.isEmpty() == true) {

@@ -11,7 +11,7 @@ class SearchedTeamPresenter(val view: SearchedTeamContract.View,
     override fun search(query: String) {
         view.setLoading(true)
         doAsync {
-            val teams = matchRemote.getTeam(query)
+            val teams = matchRemote.getTeams(query)
 
             uiThread {
                 if(teams.isEmpty()) {

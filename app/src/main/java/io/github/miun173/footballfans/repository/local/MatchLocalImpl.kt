@@ -27,15 +27,15 @@ class MatchLocalImpl(private val ctx: Context): MatchLocal {
     }
 
     /**
-     * Check if match already in faved by query matchID
+     * Check if match already in faved by query teamID
      */
     override fun checkFav(id: Int): Boolean {
         try {
             var fav: List<DBContract.FavMatch> = ArrayList()
             ctx.database.use {
                 val res = select(DBContract.FavMatch.TABLE_NAME)
-                        .whereArgs("${DBContract.FavMatch.MATCH_ID} = {matchID}",
-                                "matchID" to id)
+                        .whereArgs("${DBContract.FavMatch.MATCH_ID} = {teamID}",
+                                "teamID" to id)
 
                 fav = res.parseList(classParser())
             }
@@ -89,8 +89,8 @@ class MatchLocalImpl(private val ctx: Context): MatchLocal {
 
             ctx.database.use {
                 val res = select(DBContract.FavMatch.TABLE_NAME)
-                        .whereArgs("${DBContract.FavMatch.MATCH_ID} = {matchID}",
-                                "matchID" to matchID)
+                        .whereArgs("${DBContract.FavMatch.MATCH_ID} = {teamID}",
+                                "teamID" to matchID)
 
                 fav = res.parseList(classParser())
             }

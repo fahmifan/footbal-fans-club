@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
+import io.github.miun173.footballfans.R.id.favmatch_layout_swiped
 import io.github.miun173.footballfans.matchdetail.MatchDetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
@@ -66,22 +67,21 @@ class FavMatchFragment: Fragment(), FavMatchContract.View {
         this.events.clear()
         this.events.addAll(event as List<Event>)
         rvEventAdapter.notifyDataSetChanged()
-        favmatch_layout_swiped.let {
-            it.isRefreshing = false
-        }
+        favmatch_layout_swiped?.isRefreshing = false
     }
 
     override fun showLoading(show: Boolean) {
-        if(show) {
-            Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-        }
+        favmatch_layout_swiped?.isRefreshing = show
+
     }
 
     override fun showNoFav() {
         Toast.makeText(context, "No Favorite Match", Toast.LENGTH_SHORT).show()
+        favmatch_layout_swiped?.isRefreshing = false
     }
 
     override fun showFavFailed() {
         Toast.makeText(context, "Failed load favorite match", Toast.LENGTH_SHORT).show()
+        favmatch_layout_swiped?.isRefreshing = false
     }
 }

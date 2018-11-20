@@ -21,6 +21,7 @@ class PlayerFragment: Fragment(), PlayerContract.View {
     lateinit var playerAdapter: PlayerRVAdapter
     lateinit var rvManager: RecyclerView.LayoutManager
     lateinit var presenter: PlayerContract.Presenter
+    lateinit var team: Team
 
     private val players: MutableList<Player> = mutableListOf()
 
@@ -37,7 +38,7 @@ class PlayerFragment: Fragment(), PlayerContract.View {
 
         presenter = PlayerPresenter(this, MatchRemoteImpl())
 
-        val team = arguments?.get(getString(R.string.intent_team)) as Team
+        team = arguments?.get(getString(R.string.intent_team)) as Team
         presenter.getTeamPlayers(team.teamName ?: "")
 
         return rootView
@@ -46,10 +47,14 @@ class PlayerFragment: Fragment(), PlayerContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rv_team_player.layoutManager = rvManager
         rv_team_player.adapter = playerAdapter
+        swipe.setOnRefreshListener {
+            swipe?.isRefreshing = true
+            team.teamName?.let { presenter.getTeamPlayers(it) }
+        }
     }
 
     override fun setLoading(show: Boolean) {
-        Toast.makeText(context, "Loading players...", Toast.LENGTH_SHORT).show()
+        swipe?.isRefreshing = show
     }
 
     override fun setPlayers(players: List<Player>) {

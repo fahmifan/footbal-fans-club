@@ -6,6 +6,16 @@ import io.github.miun173.footballfans.utils.DateTime
 import java.net.URL
 
 class MatchRemoteImpl: MatchRemote {
+    override fun getTeamDetail(teamID: Int): Team? {
+        val res = Gson().fromJson(
+                URL(TheSportDbRoute.getTeamDetail(teamID)).readText(),
+                Teams::class.java
+        )
+
+        println("team detail >>> ${res.teams}")
+
+        return res.teams?.get(0)
+    }
 
     override fun getPlayers(teamName: String): List<Player> {
         val res = Gson().fromJson(
@@ -40,7 +50,7 @@ class MatchRemoteImpl: MatchRemote {
         return res.events ?: emptyList()
     }
 
-    override fun getTeam(name: String): List<Team> {
+    override fun getTeams(name: String): List<Team> {
         val res = Gson().fromJson(
                 URL(TheSportDbRoute.getTeam(name)).readText(),
                 Teams::class.java)

@@ -25,7 +25,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
     private lateinit var rvAdapterMain: EventsRVAdapter
     private lateinit var rvManager: RecyclerView.LayoutManager
     private lateinit var presenter: SchedulePresenter
-    private val EVENT_ID = "4328"
+    private val EVENT_ID = 4328
     private val events: MutableList<Event> = mutableListOf()
     lateinit var arrayAdapter: ArrayAdapter<League>
     private val leagues: MutableList<League> = mutableListOf()
@@ -49,7 +49,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         presenter = SchedulePresenter(this, MatchRemoteImpl())
-        presenter.getEvents(EVENT_ID.toInt(), isNext)
+        presenter.getEvents(EVENT_ID, isNext)
         presenter.getLeagues()
 
         return view
@@ -86,6 +86,11 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
             layoutManager = rvManager
             adapter = rvAdapterMain
         }
+
+        swipe.setOnRefreshListener {
+            swipe?.isRefreshing = true
+            presenter.getEvents(leagues[0]?.idLeague ?: EVENT_ID, isNext)
+        }
     }
 
     override fun showEvents(events: List<Event>) {
@@ -95,8 +100,9 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
     }
 
     override fun showLoading(show: Boolean) {
-        if(show) {
-            Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-        }
+        swipe?.isRefreshing = show
+//        if(show) {
+//            Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+//        }
     }
 }

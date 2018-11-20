@@ -72,6 +72,11 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
             onItemSelectedListener = this@TeamFragment
         }
 
+        swipe.setOnRefreshListener {
+            swipe?.isRefreshing = true
+            presenter.getTeamsLeague(leagues[0]?.idLeague ?: EVENT_ID)
+        }
+
         val NEW_SPINNER_ID = 1
         (Spinner(context)).id = NEW_SPINNER_ID
     }
@@ -115,9 +120,7 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
     }
 
     override fun showLoading(show: Boolean) {
-        if(show) {
-            // Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-        }
+        swipe?.isRefreshing = show
     }
 
     override fun setListTeam(teams: List<Team>) {

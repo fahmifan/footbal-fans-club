@@ -1,17 +1,15 @@
 package io.github.miun173.footballfans.main.fav
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
-import io.github.miun173.footballfans.main.EventsRVAdapter
-import io.github.miun173.footballfans.main.fav.favmatch.FavMatchContract
 import io.github.miun173.footballfans.main.fav.favmatch.FavMatchFragment
 import io.github.miun173.footballfans.main.fav.favteam.FavTeamFragment
-import io.github.miun173.footballfans.model.Event
 import kotlinx.android.synthetic.main.fragment_fav.*
 
 class FavFragment: Fragment() {
