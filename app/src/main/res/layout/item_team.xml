@@ -13,12 +13,17 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:padding="8dp"
+        tools:src="@drawable/img_barca"
+        android:layout_gravity="center_vertical"
         android:contentDescription="@string/club_logo" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="@tools:sample/lorem"
+        android:layout_gravity="center_vertical"
         android:padding="8dp" />
 
 </LinearLayout>

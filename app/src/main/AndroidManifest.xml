@@ -20,11 +20,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".detail.DetailActivity"
+            android:name=".matchdetail.MatchDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".main.searchresult.SearchedMatchctivity" />
-        <activity android:name=".teamdetail.TeamDetailActivity" />
-        <activity android:name=".PlayerDetailActivity"></activity>
+        <activity android:name=".teamdetail.TeamDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".PlayerDetailActivity" />
     </application>
 
 </manifest>

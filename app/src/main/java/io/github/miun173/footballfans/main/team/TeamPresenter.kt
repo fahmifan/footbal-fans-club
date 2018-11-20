@@ -1,16 +1,16 @@
 package io.github.miun173.footballfans.main.team
 
-import io.github.miun173.footballfans.repository.remote.MatchRepo
+import io.github.miun173.footballfans.repository.remote.MatchRemote
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 class TeamPresenter(val  view: TeamContract.View,
-                    val matchRepo: MatchRepo): TeamContract.Presenter {
+                    val matchRemote: MatchRemote): TeamContract.Presenter {
     override fun getTeamsLeague(id: Int) {
         view.showLoading(true)
 
         doAsync {
-            val res = matchRepo.getTeamsLeague(id)
+            val res = matchRemote.getTeamsLeague(id)
 
             uiThread {
 
@@ -28,7 +28,7 @@ class TeamPresenter(val  view: TeamContract.View,
 
     override fun getLeagues() {
         doAsync {
-            val leagues = matchRepo.getLeagues()
+            val leagues = matchRemote.getLeagues()
             uiThread {
                 if(!leagues.isEmpty()) {
                     view.setSpinner(leagues)

@@ -20,12 +20,14 @@ class TeamOverview: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         Picasso.get()
                 .load(team.teamBadge)
                 .placeholder(R.drawable.img_placholder)
                 .error(R.drawable.img_error)
                 .into(team_logo)
 
-        team_description.text = team.strDescriptionEN
+        tv_name.text = team.teamName
+        tv_desc.text = team.strDescriptionEN
     }
 }

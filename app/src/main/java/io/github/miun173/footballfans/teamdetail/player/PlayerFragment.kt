@@ -13,7 +13,7 @@ import io.github.miun173.footballfans.PlayerDetailActivity
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Player
 import io.github.miun173.footballfans.model.Team
-import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
+import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
 import io.github.miun173.footballfans.teamdetail.PlayerRVAdapter
 import kotlinx.android.synthetic.main.fragment_team_player.*
 
@@ -35,7 +35,7 @@ class PlayerFragment: Fragment(), PlayerContract.View {
             startActivity(intent)
         }
 
-        presenter = PlayerPresenter(this, MatchRepoImpl())
+        presenter = PlayerPresenter(this, MatchRemoteImpl())
 
         val team = arguments?.get(getString(R.string.intent_team)) as Team
         presenter.getTeamPlayers(team.teamName ?: "")

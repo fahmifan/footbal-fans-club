@@ -1,7 +1,5 @@
-package io.github.miun173.footballfans.detail
+package io.github.miun173.footballfans.matchdetail
 
-//import android.support.v4.content.ContextCompat
-//import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,13 +9,14 @@ import androidx.core.content.ContextCompat
 import com.squareup.picasso.Picasso
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.repository.local.DBManagerImpl
-import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
+import io.github.miun173.footballfans.repository.local.MatchLocalImpl
+import io.github.miun173.footballfans.repository.remote.MatchRemote
+import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailActivity : AppCompatActivity(), DetailContract.View {
+class MatchDetailActivity : AppCompatActivity(), MatchDetailContract.View {
     private lateinit var event: Event
-    private lateinit var presenter: DetailPresenter
+    private lateinit var presenterMatch: MatchDetailPresenter
     private var eventID: Int = 0
     private var menuItem: Menu? = null
 
@@ -31,14 +30,15 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         event = intent.getParcelableExtra("event")
         eventID = event.idEvent?.toInt() ?: -1
 
-        presenter = DetailPresenter(this, MatchRepoImpl() ,DBManagerImpl(applicationContext))
+        presenterMatch = MatchDetailPresenter(this, MatchRemoteImpl(),
+                MatchLocalImpl(applicationContext))
 
-        presenter.getEventDetail(eventID)
-        presenter.getTeam(event.strHomeTeam, event.strAwayTeam)
+        presenterMatch.getEventDetail(eventID)
+        presenterMatch.getTeam(event.strHomeTeam, event.strAwayTeam)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuInflater.inflate(R.menu.fav_menu, menu)
         menuItem = menu
 
         return true
@@ -46,7 +46,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean = when(item?.itemId) {
         R.id.menu_add_fav -> {
-            presenter.setFaved(event)
+            presenterMatch.setFaved(event)
             true
         }
 

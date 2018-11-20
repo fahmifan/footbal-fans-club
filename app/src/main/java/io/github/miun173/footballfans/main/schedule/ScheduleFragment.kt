@@ -14,11 +14,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
-import io.github.miun173.footballfans.detail.DetailActivity
+import io.github.miun173.footballfans.matchdetail.MatchDetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.model.League
-import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
+import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
 import kotlinx.android.synthetic.main.fragment_schedule.*
 
 class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.OnItemSelectedListener {
@@ -39,7 +39,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
         rvManager = LinearLayoutManager(context)
 
         rvAdapterMain = EventsRVAdapter(events) {
-            val intent = Intent(context, DetailActivity::class.java)
+            val intent = Intent(context, MatchDetailActivity::class.java)
             intent.putExtra(getString(R.string.intent_event), it)
             intent.putExtra(getString(R.string.intent_event_id), it.idEvent?.toInt())
             startActivity(intent)
@@ -48,7 +48,7 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
         arrayAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, leagues)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        presenter = SchedulePresenter(this, MatchRepoImpl())
+        presenter = SchedulePresenter(this, MatchRemoteImpl())
         presenter.getEvents(EVENT_ID.toInt(), isNext)
         presenter.getLeagues()
 

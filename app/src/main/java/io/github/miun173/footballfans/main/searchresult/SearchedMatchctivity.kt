@@ -7,10 +7,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
-import io.github.miun173.footballfans.detail.DetailActivity
+import io.github.miun173.footballfans.matchdetail.MatchDetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
+import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
 import kotlinx.android.synthetic.main.activity_searched_match.*
 
 class SearchedMatchctivity : AppCompatActivity(), SearchedMatchContract.View {
@@ -24,12 +24,12 @@ class SearchedMatchctivity : AppCompatActivity(), SearchedMatchContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_searched_match)
 
-        presenter = SearchMatchPresenter(this, MatchRepoImpl())
+        presenter = SearchMatchPresenter(this, MatchRemoteImpl())
 
         // set recyclerview
         rvManager = LinearLayoutManager(applicationContext)
         matchAdapter = EventsRVAdapter(events) {
-            val intent = Intent(applicationContext, DetailActivity::class.java)
+            val intent = Intent(applicationContext, MatchDetailActivity::class.java)
             intent.putExtra(getString(R.string.intent_event), it)
             intent.putExtra(getString(R.string.intent_event_id), it.idEvent?.toInt())
             startActivity(intent)

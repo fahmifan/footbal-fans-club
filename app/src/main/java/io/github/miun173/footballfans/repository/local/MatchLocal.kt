@@ -2,7 +2,7 @@ package io.github.miun173.footballfans.repository.local
 
 import io.github.miun173.footballfans.model.Event
 
-interface DBManager {
+interface MatchLocal {
     fun insertFavMatch(event: Event): Long
     fun deleteFavMatch(favID: Int): Int
     fun checkFav(id: Int): Boolean

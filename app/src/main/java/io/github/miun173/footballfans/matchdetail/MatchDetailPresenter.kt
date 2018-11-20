@@ -1,15 +1,15 @@
-package io.github.miun173.footballfans.detail
+package io.github.miun173.footballfans.matchdetail
 
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.repository.local.DBManager
-import io.github.miun173.footballfans.repository.remote.MatchRepo
+import io.github.miun173.footballfans.repository.local.MatchLocal
+import io.github.miun173.footballfans.repository.remote.MatchRemote
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class DetailPresenter(private val view: DetailContract.View,
-                      private val match: MatchRepo,
-                      private val db: DBManager)
-    : DetailContract.Presenter {
+class MatchDetailPresenter(private val view: MatchDetailContract.View,
+                           private val match: MatchRemote,
+                           private val db: MatchLocal)
+    : MatchDetailContract.Presenter {
 
     override fun setFaved(event: Event?) {
         println("setFaved >>> begin")

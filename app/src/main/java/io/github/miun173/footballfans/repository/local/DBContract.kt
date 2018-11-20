@@ -16,4 +16,15 @@ class DBContract {
         }
 
     }
+
+    data class FavTeam(val id: Long?,
+    val matchID: Long?) {
+
+        companion object {
+            const val TABLE_NAME = "fav_team"
+            const val ID = "id"
+            const val TEAM_ID = "team_id"
+        }
+
+    }
 }

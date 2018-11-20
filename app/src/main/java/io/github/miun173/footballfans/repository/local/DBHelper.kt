@@ -23,11 +23,16 @@ class DBHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, DBContract.DB_NAME, 
         db.createTable(DBContract.FavMatch.TABLE_NAME, true,
                 DBContract.FavMatch.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 DBContract.FavMatch.MATCH_ID to INTEGER)
+
+        db.createTable(DBContract.FavTeam.TABLE_NAME, true,
+                DBContract.FavTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+                DBContract.FavTeam.TEAM_ID to INTEGER)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // Here you can upgrade tables, as usual
         db.dropTable(DBContract.FavMatch.TABLE_NAME, true)
+        db.dropTable(DBContract.FavTeam.TABLE_NAME, true)
     }
 }
 

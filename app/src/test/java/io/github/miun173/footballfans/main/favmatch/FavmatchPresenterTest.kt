@@ -2,8 +2,8 @@ package io.github.miun173.footballfans.main.favmatch
 
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBContract
-import io.github.miun173.footballfans.repository.local.DBManager
-import io.github.miun173.footballfans.repository.remote.MatchRepo
+import io.github.miun173.footballfans.repository.local.MatchLocal
+import io.github.miun173.footballfans.repository.remote.MatchRemote
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.junit.Before
@@ -17,8 +17,8 @@ import java.util.*
 class FavmatchPresenterTest {
     // mocking
     @Mock private lateinit var view: FavmatchContract.View
-    @Mock private lateinit var matchRepo: MatchRepo
-    @Mock private lateinit var db: DBManager
+    @Mock private lateinit var matchRemote: MatchRemote
+    @Mock private lateinit var db: MatchLocal
 
     lateinit var presenter: FavmatchContract.Presenter
 
@@ -39,7 +39,7 @@ class FavmatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = FavmatchPresenter(view, matchRepo, db)
+        presenter = FavmatchPresenter(view, matchRemote, db)
     }
 
     @Test
@@ -50,7 +50,7 @@ class FavmatchPresenterTest {
 
         doAsync {
             `when`(db.getFavs()).thenReturn(MANY_FAVS)
-            `when`(MANY_FAVS.map { matchRepo.getEventDetail(it.matchID?.toInt() ?: 0) })
+            `when`(MANY_FAVS.map { matchRemote.getEventDetail(it.matchID?.toInt() ?: 0) })
                     .thenReturn(MANY_EVENT)
 
             uiThread {

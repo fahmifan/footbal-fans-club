@@ -9,11 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
-import io.github.miun173.footballfans.detail.DetailActivity
+import io.github.miun173.footballfans.matchdetail.MatchDetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.repository.local.DBManagerImpl
-import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
+import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
 import kotlinx.android.synthetic.main.fragment_favmatch.*
 
 class FavmatchFragment: Fragment(), FavmatchContract.View {
@@ -34,12 +33,12 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
         val view = inflater.inflate(R.layout.fragment_favmatch, parent, false)
 
         // if there is no context there is no way to access the DB, so just NPE it
-        presenter = FavmatchPresenter(this, MatchRepoImpl(), DBManagerImpl(context!!))
+        presenter = FavmatchPresenter(this, MatchRemoteImpl(), io.github.miun173.footballfans.repository.local.MatchLocalImpl(context!!))
         presenter.getFavmatch()
 
         rvManager = LinearLayoutManager(context)
         rvEventAdapter = EventsRVAdapter(events) {
-            val intent = Intent(context, DetailActivity::class.java)
+            val intent = Intent(context, MatchDetailActivity::class.java)
             intent.putExtra("event", it)
             intent.putExtra("event_id", it.idEvent?.toInt())
             startActivity(intent)

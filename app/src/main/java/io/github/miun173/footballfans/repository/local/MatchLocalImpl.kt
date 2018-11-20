@@ -8,7 +8,7 @@ import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import java.sql.SQLException
 
-class DBManagerImpl(private val ctx: Context): DBManager {
+class MatchLocalImpl(private val ctx: Context): MatchLocal {
     override fun getFavs(): List<DBContract.FavMatch> {
         try {
             var favs: List<DBContract.FavMatch> = ArrayList()

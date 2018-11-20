@@ -5,7 +5,7 @@ import io.github.miun173.footballfans.model.*
 import io.github.miun173.footballfans.utils.DateTime
 import java.net.URL
 
-class MatchRepoImpl: MatchRepo {
+class MatchRemoteImpl: MatchRemote {
 
     override fun getPlayers(teamName: String): List<Player> {
         val res = Gson().fromJson(

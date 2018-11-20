@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.League
 import io.github.miun173.footballfans.model.Team
-import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
+import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
 import io.github.miun173.footballfans.teamdetail.TeamDetailActivity
 import kotlinx.android.synthetic.main.fragment_team.*
 
@@ -45,7 +45,7 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
         arrayAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, leagues)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        presenter = TeamPresenter(this, MatchRepoImpl())
+        presenter = TeamPresenter(this, MatchRemoteImpl())
         presenter.getLeagues()
         presenter.getTeamsLeague(EVENT_ID)
 

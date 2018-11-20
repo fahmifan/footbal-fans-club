@@ -1,7 +1,7 @@
 package io.github.miun173.footballfans.main.schedule
 
 import io.github.miun173.footballfans.model.Event
-import io.github.miun173.footballfans.repository.remote.MatchRepo
+import io.github.miun173.footballfans.repository.remote.MatchRemote
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.junit.Before
@@ -16,14 +16,14 @@ import java.util.*
 class SchedulePresenterTest {
 
     @Mock private lateinit var view: ScheduleContract.SchedulerView
-    @Mock private lateinit var matchRepo: MatchRepo
+    @Mock private lateinit var matchRemote: MatchRemote
 
     private lateinit var presenter: SchedulePresenter
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = SchedulePresenter(view, matchRepo)
+        presenter = SchedulePresenter(view, matchRemote)
     }
 
     val MANY_EVENT: List<Event> = Arrays.asList(
@@ -34,13 +34,13 @@ class SchedulePresenterTest {
 
     @Test
     fun showevents_when_getEvents_notempty() {
-        `when`(matchRepo.getLast15Events(Mockito.anyInt())).thenReturn(MANY_EVENT)
+        `when`(matchRemote.getLast15Events(Mockito.anyInt())).thenReturn(MANY_EVENT)
 
         presenter.getEvents(Mockito.anyInt(), true)
         verify(view).showLoading(true)
 
         doAsync {
-            `when`(matchRepo.getNext15Events(Mockito.anyInt())).thenReturn(MANY_EVENT)
+            `when`(matchRemote.getNext15Events(Mockito.anyInt())).thenReturn(MANY_EVENT)
 
             uiThread {
                 verify(view).showEvents(MANY_EVENT)

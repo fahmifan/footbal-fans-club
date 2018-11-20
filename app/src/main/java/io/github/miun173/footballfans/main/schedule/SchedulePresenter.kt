@@ -1,11 +1,11 @@
 package io.github.miun173.footballfans.main.schedule
 
-import io.github.miun173.footballfans.repository.remote.MatchRepo
+import io.github.miun173.footballfans.repository.remote.MatchRemote
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 class SchedulePresenter(private val view: ScheduleContract.SchedulerView,
-                        private val matchRepo: MatchRepo)
+                        private val matchRemote: MatchRemote)
     : ScheduleContract.Presenter {
 
     override fun getEvents(id: Int, isNext: Boolean) {
@@ -13,8 +13,8 @@ class SchedulePresenter(private val view: ScheduleContract.SchedulerView,
 
         doAsync {
             val res = when(isNext) {
-                true -> matchRepo.getNext15Events(id)
-                false -> matchRepo.getLast15Events(id)
+                true -> matchRemote.getNext15Events(id)
+                false -> matchRemote.getLast15Events(id)
             }
 
             println("res >>> $res")
@@ -29,7 +29,7 @@ class SchedulePresenter(private val view: ScheduleContract.SchedulerView,
 
     override fun getLeagues() {
         doAsync {
-            val leagues = matchRepo.getLeagues()
+            val leagues = matchRemote.getLeagues()
             uiThread {
                 if(!leagues.isEmpty()) {
                     view.setSpinner(leagues)

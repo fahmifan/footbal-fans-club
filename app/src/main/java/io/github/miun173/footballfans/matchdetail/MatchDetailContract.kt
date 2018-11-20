@@ -1,8 +1,8 @@
-package io.github.miun173.footballfans.detail
+package io.github.miun173.footballfans.matchdetail
 
 import io.github.miun173.footballfans.model.Event
 
-interface DetailContract {
+interface MatchDetailContract {
     interface View {
         fun setEventDetail(event: Event?)
         fun setLogo(homeBadge: String?, awayBadge: String?)

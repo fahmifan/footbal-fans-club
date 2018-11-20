@@ -2,11 +2,7 @@ package io.github.miun173.footballfans.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Selection.setSelection
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -14,8 +10,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.main.schedule.ScheduleFragment
 import io.github.miun173.footballfans.main.searchresult.SearchedMatchctivity
-import io.github.miun173.footballfans.model.League
-import io.github.miun173.footballfans.repository.remote.MatchRepoImpl
 import kotlinx.android.synthetic.main.fragment_match.*
 
 class MatchFragment: Fragment() {
