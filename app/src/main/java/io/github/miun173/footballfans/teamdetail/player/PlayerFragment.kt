@@ -1,5 +1,6 @@
 package io.github.miun173.footballfans.teamdetail.player
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import io.github.miun173.footballfans.PlayerDetailActivity
 import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.model.Player
 import io.github.miun173.footballfans.model.Team
@@ -27,8 +29,10 @@ class PlayerFragment: Fragment(), PlayerContract.View {
 
         rvManager = LinearLayoutManager(context)
         playerAdapter = PlayerRVAdapter(players) {
-            // do something
-            Toast.makeText(context, "${it.strPlayer}", Toast.LENGTH_SHORT).show()
+            // Go to player details
+            val intent = Intent(context, PlayerDetailActivity::class.java)
+            intent.putExtra(getString(R.string.intent_player), it)
+            startActivity(intent)
         }
 
         presenter = PlayerPresenter(this, MatchRepoImpl())

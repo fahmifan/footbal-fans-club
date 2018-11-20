@@ -22,7 +22,7 @@ class TeamOverview: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Picasso.get()
                 .load(team.teamBadge)
-                .placeholder(R.drawable.img_load)
+                .placeholder(R.drawable.img_placholder)
                 .error(R.drawable.img_error)
                 .into(team_logo)
 

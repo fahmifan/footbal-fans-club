@@ -32,6 +32,7 @@
     <string name="team">Team</string>
     <string name="intent_team">team</string>
     <string name="team_logo">team logo</string>
+    <string name="intent_player">player</string>
 
     <array name="club_image">
         <item>@drawable/img_barca</item>

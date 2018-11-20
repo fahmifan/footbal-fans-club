@@ -23,7 +23,8 @@
             android:name=".detail.DetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".main.searchresult.SearchedMatchctivity" />
-        <activity android:name=".teamdetail.TeamDetailActivity"></activity>
+        <activity android:name=".teamdetail.TeamDetailActivity" />
+        <activity android:name=".PlayerDetailActivity"></activity>
     </application>
 
 </manifest>

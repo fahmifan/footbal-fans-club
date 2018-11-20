@@ -35,7 +35,7 @@ class TeamRVAdapter(val teams: MutableList<Team>,
         fun bind(team: Team, listener: (Team) -> Unit) {
 
             Picasso.get().load(team.teamBadge)
-                    .placeholder(R.drawable.img_load)
+                    .placeholder(R.drawable.img_placholder)
                     .error(R.drawable.img_error)
                     .into(imv_pict)
 

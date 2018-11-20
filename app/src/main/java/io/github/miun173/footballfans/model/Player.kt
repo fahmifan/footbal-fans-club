@@ -1,7 +1,10 @@
 package io.github.miun173.footballfans.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Player (
         @SerializedName("idPlayer")
         val idPlayer: String? = "",
@@ -22,5 +25,8 @@ data class Player (
         val strThumb: String? = "",
 
         @SerializedName("strCutout")
-        val strCutout: String? = ""
-)
+        val strCutout: String? = "",
+
+        @SerializedName("strFanart1")
+        val strFanart1: String? = ""
+) : Parcelable

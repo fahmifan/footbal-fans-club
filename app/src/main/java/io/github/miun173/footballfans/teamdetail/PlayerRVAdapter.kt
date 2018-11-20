@@ -36,7 +36,7 @@ class PlayerRVAdapter(private val players: MutableList<Player>,
 
             Picasso.get()
                     .load(player.strCutout ?: player.strThumb)
-                    .placeholder(R.drawable.img_load)
+                    .placeholder(R.drawable.img_placholder)
                     .error(R.drawable.img_error)
                     .into(imv_pict)
 

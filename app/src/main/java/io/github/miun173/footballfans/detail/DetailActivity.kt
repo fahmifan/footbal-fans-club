@@ -88,12 +88,12 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
 
     override fun setLogo(homeBadge: String?, awayBadge: String?) {
         Picasso.get().load(homeBadge)
-                .placeholder(R.drawable.img_load)
+                .placeholder(R.drawable.img_placholder)
                 .error(R.drawable.img_error)
                 .into(iv_home)
 
         Picasso.get().load(awayBadge)
-                .placeholder(R.drawable.img_load)
+                .placeholder(R.drawable.img_placholder)
                 .error(R.drawable.img_error)
                 .into(iv_away)
     }
