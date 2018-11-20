@@ -1,5 +1,7 @@
-package io.github.miun173.footballfans.main.favmatch
+package io.github.miun173.footballfans.main.fav
 
+import io.github.miun173.footballfans.main.fav.favmatch.FavMatchContract
+import io.github.miun173.footballfans.main.fav.favmatch.FavMatchPresenter
 import io.github.miun173.footballfans.model.Event
 import io.github.miun173.footballfans.repository.local.DBContract
 import io.github.miun173.footballfans.repository.local.MatchLocal
@@ -14,13 +16,13 @@ import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import java.util.*
 
-class FavmatchPresenterTest {
+class FavMatchPresenterTest {
     // mocking
-    @Mock private lateinit var view: FavmatchContract.View
+    @Mock private lateinit var view: FavMatchContract.View
     @Mock private lateinit var matchRemote: MatchRemote
     @Mock private lateinit var db: MatchLocal
 
-    lateinit var presenter: FavmatchContract.Presenter
+    lateinit var presenter: FavMatchContract.Presenter
 
     val MANY_FAVS: List<DBContract.FavMatch> = Arrays.asList(
             DBContract.FavMatch(id = 1, matchID = 3041),
@@ -39,7 +41,7 @@ class FavmatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = FavmatchPresenter(view, matchRemote, db)
+        presenter = FavMatchPresenter(view, matchRemote, db)
     }
 
     @Test

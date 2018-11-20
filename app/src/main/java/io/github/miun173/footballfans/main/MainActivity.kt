@@ -3,7 +3,7 @@ package io.github.miun173.footballfans.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import io.github.miun173.footballfans.R
-import io.github.miun173.footballfans.main.favmatch.FavmatchFragment
+import io.github.miun173.footballfans.main.fav.FavFragment
 import io.github.miun173.footballfans.main.team.TeamFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.nav_favmatch -> {
                     supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, FavmatchFragment())
+                            .replace(R.id.fragment_container, FavFragment())
                             .commit()
                     true
                 }

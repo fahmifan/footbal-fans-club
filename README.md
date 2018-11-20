@@ -2,7 +2,7 @@
 ---
 
 ## Unit testing
-### FavmatchPresenterTest.kt
+### FavMatchPresenterTest.kt
 1. Test 01
 - get favs match from DB and return many favs
 - then get `Events` from network (mocked using json string)

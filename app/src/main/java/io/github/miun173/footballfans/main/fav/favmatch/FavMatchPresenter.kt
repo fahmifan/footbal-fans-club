@@ -1,13 +1,13 @@
-package io.github.miun173.footballfans.main.favmatch
+package io.github.miun173.footballfans.main.fav.favmatch
 
 import io.github.miun173.footballfans.repository.local.MatchLocal
 import io.github.miun173.footballfans.repository.remote.MatchRemote
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class FavmatchPresenter(private val view: FavmatchContract.View,
+class FavMatchPresenter(private val view: FavMatchContract.View,
                         private val matchRemote: MatchRemote,
-                        private val db: MatchLocal): FavmatchContract.Presenter {
+                        private val db: MatchLocal): FavMatchContract.Presenter {
     override fun getFavmatch() {
         view.showLoading(true)
 

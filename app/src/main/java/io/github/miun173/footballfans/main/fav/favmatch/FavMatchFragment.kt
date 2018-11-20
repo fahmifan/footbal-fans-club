@@ -1,10 +1,9 @@
-package io.github.miun173.footballfans.main.favmatch
+package io.github.miun173.footballfans.main.fav.favmatch
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,15 +11,15 @@ import io.github.miun173.footballfans.R
 import io.github.miun173.footballfans.matchdetail.MatchDetailActivity
 import io.github.miun173.footballfans.main.EventsRVAdapter
 import io.github.miun173.footballfans.model.Event
+import io.github.miun173.footballfans.repository.local.MatchLocalImpl
 import io.github.miun173.footballfans.repository.remote.MatchRemoteImpl
 import kotlinx.android.synthetic.main.fragment_favmatch.*
 
-class FavmatchFragment: Fragment(), FavmatchContract.View {
-    private lateinit var presenter: FavmatchContract.Presenter
+class FavMatchFragment: Fragment(), FavMatchContract.View {
+    private lateinit var presenter: FavMatchContract.Presenter
     private lateinit var rvEventAdapter: EventsRVAdapter
     private lateinit var rv: RecyclerView
     private lateinit var rvManager: RecyclerView.LayoutManager
-//    private lateinit var searchView: SearchView
 
     private val events: MutableList<Event> = mutableListOf()
 
@@ -33,7 +32,7 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
         val view = inflater.inflate(R.layout.fragment_favmatch, parent, false)
 
         // if there is no context there is no way to access the DB, so just NPE it
-        presenter = FavmatchPresenter(this, MatchRemoteImpl(), io.github.miun173.footballfans.repository.local.MatchLocalImpl(context!!))
+        presenter = FavMatchPresenter(this, MatchRemoteImpl(), MatchLocalImpl(context!!))
         presenter.getFavmatch()
 
         rvManager = LinearLayoutManager(context)
@@ -62,25 +61,6 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
         }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-//        inflater?.inflate(R.menu.appbar_menu, menu)
-//
-//        val searchItem = menu?.findItem(R.id.action_search)
-//        searchView = searchItem?.actionView as SearchView
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                Toast.makeText(context, query, Toast.LENGTH_SHORT).show()
-//                // do search
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                return true
-//            }
-//
-//        })
-//    }
-
     override fun setFavmatch(event: List<Event?>) {
         // set list
         this.events.clear()
@@ -104,5 +84,4 @@ class FavmatchFragment: Fragment(), FavmatchContract.View {
     override fun showFavFailed() {
         Toast.makeText(context, "Failed load favorite match", Toast.LENGTH_SHORT).show()
     }
-
 }
