@@ -58,10 +58,10 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailContract.View {
     override fun showFav(show: Boolean) {
         if(show) {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
-                    R.drawable.ic_baseline_favorite_24px)
+                    R.drawable.ic_star_white_24dp)
         } else {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
-                    R.drawable.ic_baseline_favorite_border_24px)
+                    R.drawable.ic_star_border_white_24dp)
         }
 
     }

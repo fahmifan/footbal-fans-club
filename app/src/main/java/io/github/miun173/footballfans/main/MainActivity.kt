@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         
         bottom_nav.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.nav_nextmatch -> {
+                R.id.nav_match -> {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, MatchFragment())
                             .commit()
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         bottom_nav.setOnNavigationItemReselectedListener {
             when(it.itemId) {
-                R.id.nav_nextmatch -> {}
+                R.id.nav_match -> {}
                 R.id.nav_favmatch -> {}
                 R.id.nav_team -> {}
             }

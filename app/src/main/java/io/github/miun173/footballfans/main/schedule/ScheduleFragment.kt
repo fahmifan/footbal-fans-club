@@ -59,8 +59,6 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
         this.leagues.clear()
         this.leagues.addAll(leagues)
         arrayAdapter.notifyDataSetChanged()
-        val NEW_SPINNER_ID = 1
-        Spinner(context).id = NEW_SPINNER_ID
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
@@ -74,12 +72,16 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val NEW_SPINNER_ID = 1
+
         match_spinner.apply {
             adapter = arrayAdapter
             setSelection(0, false)
             onItemSelectedListener = this@ScheduleFragment
             prompt = "Select A League"
             gravity = Gravity.CENTER
+            Spinner(context).id = NEW_SPINNER_ID
+
         }
 
         events_list.apply {
@@ -87,9 +89,14 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
             adapter = rvAdapterMain
         }
 
-        swipe.setOnRefreshListener {
+        swipe?.setOnRefreshListener {
             swipe?.isRefreshing = true
-            presenter.getEvents(leagues[0]?.idLeague ?: EVENT_ID, isNext)
+            if(leagues.size > 0) {
+                presenter.getEvents(leagues[0].idLeague ?: EVENT_ID, isNext)
+            } else {
+                presenter.getLeagues()
+                presenter.getEvents(EVENT_ID, isNext)
+            }
         }
     }
 
@@ -101,8 +108,5 @@ class ScheduleFragment: Fragment(), ScheduleContract.SchedulerView, AdapterView.
 
     override fun showLoading(show: Boolean) {
         swipe?.isRefreshing = show
-//        if(show) {
-//            Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-//        }
     }
 }

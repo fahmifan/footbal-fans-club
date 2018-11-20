@@ -27,12 +27,16 @@ class TeamPresenter(val  view: TeamContract.View,
     }
 
     override fun getLeagues() {
+        view.showLoading(true)
+
         doAsync {
             val leagues = matchRemote.getLeagues()
             uiThread {
                 if(!leagues.isEmpty()) {
                     view.setSpinner(leagues)
                 }
+
+                view.showLoading(false)
             }
         }
     }

@@ -72,9 +72,14 @@ class TeamFragment: Fragment(), TeamContract.View, AdapterView.OnItemSelectedLis
             onItemSelectedListener = this@TeamFragment
         }
 
-        swipe.setOnRefreshListener {
+        swipe?.setOnRefreshListener {
             swipe?.isRefreshing = true
-            presenter.getTeamsLeague(leagues[0]?.idLeague ?: EVENT_ID)
+            if(leagues.size > 0) {
+                presenter.getTeamsLeague(leagues[0].idLeague ?: EVENT_ID)
+            } else {
+                presenter.getLeagues()
+                presenter.getTeamsLeague(EVENT_ID)
+            }
         }
 
         val NEW_SPINNER_ID = 1

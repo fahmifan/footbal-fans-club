@@ -7,6 +7,7 @@ interface MatchDetailContract {
         fun setEventDetail(event: Event?)
         fun setLogo(homeBadge: String?, awayBadge: String?)
         fun showFav(show: Boolean)
+        fun showLoading(show: Boolean)
         fun showSetFavFailed()
         fun showUnsetFavFailed()
         fun showUnsetSuccess()

@@ -56,6 +56,8 @@ class MatchDetailPresenter(private val view: MatchDetailContract.View,
     }
 
     override fun getEventDetail(eventID: Int?) {
+        view.showLoading(true)
+
         doAsync {
             // read if match is faved (saved in DB)
             val showFav = eventID?.let { db.checkFav(it) } ?: false
@@ -66,11 +68,14 @@ class MatchDetailPresenter(private val view: MatchDetailContract.View,
             uiThread {
                 view.setEventDetail(detail)
                 view.showFav(showFav)
+                view.showLoading(false)
             }
         }
     }
 
     override fun getTeam(homeName: String?, awayName: String?) {
+        view.showLoading(true)
+
         doAsync {
             val homeTeam = homeName?.let { match.getTeams(it) }
             val awayTeam = awayName?.let { match.getTeams(it) }
@@ -85,6 +90,8 @@ class MatchDetailPresenter(private val view: MatchDetailContract.View,
                 println("homeTeam >>> $homeTeam")
                 println("awayTeam >>> $awayTeam")
                 view.setLogo(homeTeam?.get(0)?.teamBadge, awayTeam?.get(0)?.teamBadge)
+
+                view.showLoading(false)
             }
         }
     }

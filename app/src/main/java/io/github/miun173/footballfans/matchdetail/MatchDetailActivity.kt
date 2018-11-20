@@ -35,6 +35,12 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailContract.View {
 
         presenterMatch.getEventDetail(eventID)
         presenterMatch.getTeam(event.strHomeTeam, event.strAwayTeam)
+
+        swipe.setOnRefreshListener {
+            swipe?.isRefreshing = true
+            presenterMatch.getEventDetail(eventID)
+            presenterMatch.getTeam(event.strHomeTeam, event.strAwayTeam)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -58,12 +64,12 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailContract.View {
     override fun showFav(show: Boolean) {
         if(show) {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
-                R.drawable.ic_baseline_favorite_24px)
+                R.drawable.ic_star_white_24dp)
             return
         }
 
         menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
-                R.drawable.ic_baseline_favorite_border_24px)
+                R.drawable.ic_star_border_white_24dp)
     }
 
     override fun showSetFavSuccess() {
@@ -122,5 +128,9 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailContract.View {
 
         fw_home.text = event?.strHomeLineupForward ?: ""
         fw_away.text = event?.strAwayLineupForward ?: ""
+    }
+
+    override fun showLoading(show: Boolean) {
+        swipe?.isRefreshing = show
     }
 }

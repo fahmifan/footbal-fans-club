@@ -36,14 +36,14 @@ class MainActivityTest {
         onView(withId(R.id.bottom_nav)).check(matches(isDisplayed()))
 
         // then, click on the `past match` button
-        onView(withId(R.id.nav_pastmatch)).perform(click())
+        onView(withId(R.id.nav_match)).perform(click())
                 .check(matches(isDisplayed()))
 
         // wait for 5sec
         Thread.sleep(5000)
 
         // check, if there is text `Everton` then click on it. We should on detail view
-        onView(withText("Everton")).perform(click())
+        onView(withText("Arsenal")).perform(click())
 
         // check if there is a `Goal` text displayed there
         onView(withText("Goal")).check(matches(isDisplayed()))
@@ -51,14 +51,8 @@ class MainActivityTest {
         // go back to main view
         pressBack()
 
-        // click on `next match`
-        onView(withId(R.id.nav_nextmatch)).perform(click())
-
-        // wait for 5sec
-        Thread.sleep(5000)
-
-        // check if there is text `Tottenham`. Then clicked it, we should on detail view
-        onView(withText("Tottenham")).check(matches(isDisplayed()))
+        // check if there is text `Wolves`. Then clicked it, we should on detail view
+        onView(withText("Wolves")).check(matches(isDisplayed()))
                 .perform(click())
 
         // click `Love` button, it will add match to favorite list
